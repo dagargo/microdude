@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Name=MicroDude
+Keywords=ud;microdude
+Exec=/usr/local/bin/microdude
+Icon=microdude
+Terminal=false
+Type=Application

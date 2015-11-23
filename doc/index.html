@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Unofficial MicroBrute SysEx Implementation">
+<meta name="keywords" content="MicroBrute,SysEx">
+<meta name="author" content="David García Goñi">
+<link rel="stylesheet" type="text/css" href="theme.css">
+<title>Unofficial MicroBrute SysEx Implementation</title>
+</head> 
+<body>
+
+<header><h1 class="entry-title">Unofficial MicroBrute SysEx Implementation</h1></header>
+
+<article>
+
+<p>This document contains information about the SysEx implementation in the Arturia MicroBrute and its publication is due to the lack of official support in this matter.</p>
+
+<section>
+<h2>Disclaimer</h2>
+
+<p>Arturia and MicroBrute are trademarks™ or registered® trademarks of their owners. There is no affiliation with Arturia or endorsement by Arturia whatsoever.</p>
+<p>There is no warranty for the information provided here.</p>
+
+</section>
+
+<section>
+<h2>General information</h2>
+
+<p>All bytes in hexadecimal except noted otherwise.</p>
+
+<p>All the messages have a sequence number in the interval 0-7F starting at 0. For every new request message the sequence number is incremented in 1. In case of the response messages, the sequence number is echoed by the MicroBrute. For simplicity's sake it will be called SN from now on.<p>
+
+<p>The following parameter codes and values are used in all the messages to get and set parameters.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th><th>Parameter Value</th><th>Values</th><th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Receive MIDI channel</td><td>5</td><td>0-10</td><td>The value is the MIDI channel minus 1. 10 is all.</td>
+</tr>
+<tr class="highlighted">
+<td>Transmit MIDI channel</td><td>7</td><td>0-F</td><td>The value is the MIDI channel minus 1.</td>
+</tr>
+<tr>
+<td rowspan="3">Note Priority</td><td rowspan="3">B</td><td>0</td><td>Last</td>
+</tr>
+<tr>
+<td>1</td><td>Low</td>
+</tr>
+<tr>
+<td>2</td><td>High</td>
+</tr>
+<tr class="highlighted">
+<td rowspan="2">Envelope Legato</td><td rowspan="2">D</td><td>0</td><td>Off</td>
+</tr>
+<tr class="highlighted">
+<td>1</td><td>On</td>
+</tr>
+<tr>
+<td rowspan="2">LFO Key Retrigger</td><td rowspan="2">F</td><td>0</td><td>Off</td>
+</tr>
+<tr>
+<td>1</td><td>On</td>
+</tr>
+<tr class="highlighted">
+<td rowspan="3">Velocity Response</td><td rowspan="3">11</td><td>0</td><td>Linear</td>
+</tr>
+<tr class="highlighted">
+<td>1</td><td>Logarithmic</td>
+</tr>
+<tr class="highlighted">
+<td>2</td><td>Exponential</td>
+</tr>
+<tr>
+<td rowspan="2">Step On</td><td rowspan="2">2A</td><td>0</td><td>Clock</td>
+</tr>
+<tr>
+<td>1</td><td>Gate</td>
+</tr>
+<tr class="highlighted">
+<td>Bend Range</td><td>2C</td><td>1-C</td><td>The value is the number of semitones.</td>
+</tr>
+<tr>
+<td rowspan="2">Play On</td><td rowspan="2">2E</td><td>0</td><td>Hold</td>
+</tr>
+<tr>
+<td>1</td><td>Note On</td>
+</tr>
+<tr class="highlighted">
+<td rowspan="3">Next Sequence</td><td rowspan="3">32</td><td>0</td><td>End</td>
+</tr>
+<tr class="highlighted">
+<td>1</td><td>Instant Reset</td>
+</tr>
+<tr class="highlighted">
+<td>2</td><td>Instant Continuation</td>
+</tr>
+<tr>
+<td rowspan="3">Retriggering</td><td rowspan="3">34</td><td>0</td><td>Reset</td>
+</tr>
+<tr>
+<td>1</td><td>Legato</td>
+</tr>
+<tr>
+<td>2</td><td>None</td>
+</tr>
+<tr class="highlighted">
+<td rowspan="3">Gate Length</td><td rowspan="3">36</td><td>1</td><td>Short</td>
+</tr>
+<tr class="highlighted">
+<td>2</td><td>Medium</td>
+</tr>
+<tr class="highlighted">
+<td>3</td><td>Long</td>
+</tr>
+<tr>
+<td rowspan="4">Step Length</td><td rowspan="4">38</td><td>4</td><td>1/4</td>
+</tr>
+<tr>
+<td>8</td><td>1/8</td>
+</tr>
+<tr>
+<td>16</td><td>1/16</td>
+</tr>
+<tr>
+<td>32</td><td>1/32</td>
+</tr>
+<tr class="highlighted">
+<td rowspan="3">Sync</td><td rowspan="3">3C</td><td>0</td><td>Automatic</td>
+</tr>
+<tr class="highlighted">
+<td>1</td><td>Internal</td>
+</tr>
+<tr class="highlighted">
+<td>2</td><td>External</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section>
+<h2>Getting configuration from the MicroBrute</h2>
+
+<p>The following message is used to request for a parameter of the MicroBrute configuration.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>0</th><th>Parameter + 1</th><th>End</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>0</td><td>0</td><td>6</td><td>F7</td>
+</tr>
+</table>
+
+<p>And this is the response message.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>1</th><th>Parameter</th><th>Value</th><th>Unknown</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>0</th><th>Unknown</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>0</td><td>1</td><td>5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>F7</td>
+</tr>
+<tr>
+<tbody>
+</table>
+    
+<p>In this case, the sequence number is 0, the requested paremeter is the receive MIDI channel and the returned value is 0, which means channel 1.</p>
+</section>
+
+<section>
+<h2>Setting configuration to the MicroBrute</h2>
+
+<p>Setting a value is as simple as sending the following SysEx message.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>1</th><th>Parameter</th><th>Value</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>1</td><td>1</td><td>B</td><td>0</td><td>F7</td>
+</tr>
+</table>
+
+<p>In this case, the sequence number is 1, the paremeter is the note priority and the value is 0, which means last.</p>
+</section>
+
+<section>
+<h2>Getting sequences from the MicroBrute</h2>
+
+<p>There are 8 sequences which Sequence Id goes from 1 to 8. Internally, sequences are numbered from 0 to 7 and this convention must be used in the messages.</p>
+<p>Sequences have 64 steps and are encoded into 2 SysEx messages.</p>
+<p>For the notes, the midi note number is used. For the rests, the value used is 7F.</p>
+<p>Notice that the first message has an Offset of 0, while the second message has 20 (32 in decimal).</p>
+<p>A value of 0 means the end of the sequence has been reached, so from the first 0 on the bytes are ignored.</p>
+
+<p>With this message we are requesting the last 32 bytes </p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>3</th><th>3B</th><th>Sequence</th><th>Offset</th><th>Length</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>17</td><td>03</td><td>3B</td><td>6</td><td>20</td><td>20</td><td>F7</td>
+</tr>
+</table>
+
+<p>And the MicroBrute answers with this.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>23</th><th>3A</th><th>Sequence</th><th>Offset</th><th>Length</th><th>Data (32 bytes)</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>17</td><td>23</td><td>3A</td><td>6</td><td>20</td><td>20</td><td>data</td><td>F7</td>
+</tr>
+</table>
+
+<p>Notice that SN, Sequence, Offset and Length are echoed by the MicroBrute. Also, this message has the same structure as the message for setting the sequence.</p>
+</section>
+
+<section>
+<h2>Setting sequences to the MicroBrute</h2>
+
+<p>Same rules for getting sequences on sequence length, note encoding and rests apply here.</p>
+
+<p>It is possible, however, to set sequences shorter than 32 notes. In order to achieve this, the only thing to set is the field Length but we still must provide 32 data bytes in the message (a note 0 will be used to padding the notes).</p>
+
+<p>The following message would set the first 32 notes of the sequence 2.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th colspan="3">Arturia ID</th><th>5</th><th>1</th><th>SN</th><th>23</th><th>3A</th><th>Sequence</th><th>Offset</th><th>Length</th><th>Data (32 bytes)</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>0</td><td>20</td><td>6B</td><td>5</td><td>1</td><td>47</td><td>23</td><td>3A</td><td>1</td><td>0</td><td>20</td><td>data</td><td>F7</td>
+</tr>
+</table>
+
+<p>Notice this message has the same structure as the message response for setting the sequence.</p>
+</section>
+
+<section>
+<h2>Handshaking</h2>
+
+<p>The handshaking process is very simple and is based on standard Non Real Time Universal SysEx.</p>
+
+<p>The request message is a General Information Identity Request.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th>Non Real Time ID</th><th>SysEx Channel</th><th>General Information</th><th>Identity Request</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>7E</td><td>7F</td><td>6</td><td>1</td><td>F7</td>
+</tr>
+</table>
+
+<p>The reply message is a General Information Identity Reply. Notice that the Version Number in this case is 1.0.3.2 which corresponds to the current firmware installed.</p>
+
+<table class="singleRow">
+<thead>
+<tr>
+<th>Start</th><th>Non Real Time ID</th><th>SysEx Channel</th><th>General Information</th><th>Identity Reply</th><th colspan="3">Arturia ID</th><th colspan="2">Family Number</th><th colspan="2">Model Number</th><th colspan="4">Version Number</th><th>End</th>
+</tr>
+</thead>
+<tr>
+<td>F0</td><td>7E</td><td>1</td><td>6</td><td>2</td><td>0</td><td>20</td><td>6B</td><td>4</td><td>0</td><td>2</td><td>1</td><td>1</td><td>0</td><td>3</td><td>2</td><td>F7</td>
+</tr>
+</table>
+
+</section>
+
+</article>
+
+<footer>
+<div id="license">
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Unofficial MicroBrute SysEx Implementation</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">David García Goñi</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+</div>
+</footer>
+
+</body>
+</html>
