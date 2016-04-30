@@ -19,6 +19,8 @@
 
 """MicroDude user interface"""
 
+import gi
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GLib
 import logging
@@ -117,7 +119,7 @@ class Editor(object):
         self.filter_mbseq = Gtk.FileFilter()
         self.filter_mbseq.set_name('MicroBrute sequence files')
         self.filter_mbseq.add_pattern('*.' + EXTENSION)
-        
+
         self.filter_any = Gtk.FileFilter()
         self.filter_any.set_name('Any files')
         self.filter_any.add_pattern('*')
@@ -131,7 +133,7 @@ class Editor(object):
             self.set_status_msg('Connected')
         else:
             self.set_status_msg('Not connected')
-        
+
     def ui_reconnect(self):
         if not self.connector.connected():
             self.connect();
@@ -199,7 +201,7 @@ class Editor(object):
         with open(filename, 'r') as input_file:
             for line in input_file:
                 self.connector.set_sequence(line.rstrip('\n'))
-                
+
     def show_download(self):
         dialog = Gtk.FileChooserDialog('Save as', self.main_window,
             Gtk.FileChooserAction.SAVE,
@@ -209,13 +211,13 @@ class Editor(object):
         dialog.add_filter(self.filter_mbseq)
         dialog.add_filter(self.filter_any)
         dialog.set_current_name(DEF_FILENAME)
-        
+
         response = dialog.run()
         if response == Gtk.ResponseType.OK:
             logger.debug('New file: ' + dialog.get_filename())
             self.get_sequence_file(dialog.get_filename())
         dialog.destroy()
-        
+
     def get_sequence_file(self, filename):
         with open(filename, 'w') as output_file:
             sequences = []
