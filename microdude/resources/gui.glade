@@ -29,7 +29,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     <property name="can_focus">False</property>
     <property name="type_hint">normal</property>
     <property name="program_name">MicroDude</property>
-    <property name="copyright" translatable="yes">Copyright © 2015 David García Goñi</property>
+    <property name="copyright" translatable="yes">Copyright © 2016 David García Goñi</property>
     <property name="comments" translatable="yes">MicroDude is an editor for Arturia MicroBrute</property>
     <property name="website">https://github.com/dagargo/microdude</property>
     <property name="authors">David García Goñi&lt;dagargo@gmail.com&gt;</property>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2015 David García Goñi
+# Copyright 2016 David García Goñi
 #
 # This file is part of MicroDude.
 #
@@ -25,7 +25,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 INIT_MSG = [ 0x7E, 0x7F, 0x6, 0x1 ]
-MICROBRUTE_MSG = [ 0x7E, 0x1, 0x6, 0x2, 0x0, 0x20, 0x6B, 0x4, 0x0, 0x2, 0x1, 0x1, 0x0, 0x3, 0x2 ]
+MICROBRUTE_MSG_WO_VERSION = [ 0x7E, 0x1, 0x6, 0x2, 0x0, 0x20, 0x6B, 0x4, 0x0, 0x2, 0x1 ]
 TX_MSG = [ 0x0, 0x20, 0x6B, 0x5, 0x1 ]
 
 RX_CHANNEL = 0x5
@@ -51,12 +51,12 @@ class Connector(object):
         self.port = None
         self.seq = 0
         self.sw_version = None
-        
+
     def seq_inc(self):
         self.seq += 1
         if self.seq == 0x80:
             self.seq = 0;
-            
+
     def connected(self):
         return self.port != None
 
@@ -69,13 +69,13 @@ class Connector(object):
 
     def connect(self):
         """Connect to the MicroBrute."""
-        logger.debug('Connecing...')
+        logger.debug('Connecting...')
         try:
             self.port = mido.open_ioport('MicroBrute MIDI 1')
             logger.debug('Handshaking...')
             self.tx_message(INIT_MSG)
             response = self.rx_message()
-            if response == MICROBRUTE_MSG:
+            if response[0:11] == MICROBRUTE_MSG_WO_VERSION:
                 self.sw_version = '.'.join([str(i) for i in response[11:15]])
                 logger.debug('Handshake ok. Version {:s}.'.format(self.sw_version))
             else:
@@ -83,7 +83,7 @@ class Connector(object):
                 self.disconnect()
         except IOError as e:
             logger.error('IOError while connecting')
-        
+
     def set_sequence(self, sequence):
         """Set the sequence in Arturia's format in the MicroBrute."""
         msgs = self.create_set_sequence_messages(sequence)
@@ -96,7 +96,7 @@ class Connector(object):
         sequence.extend(self.get_sequence_fragment(seq_id, 0))
         sequence.extend(self.get_sequence_fragment(seq_id, 0x20))
         return self.get_sequence_string(seq_id, sequence)
-        
+
     def get_sequence_string(self, seq_id, sequence):
         notes = []
         for note in sequence:
@@ -109,7 +109,7 @@ class Connector(object):
         request = self.create_get_sequence_message(seq_id, offset)
         self.tx_message(request)
         response = self.rx_message()
-        
+
         #Checking some bytes and getting the value
         if response[5] != self.seq:
             logger.warn('Bad sequence number byte')
@@ -141,7 +141,7 @@ class Connector(object):
             logger.warn('Bad parameter byte')
 
         self.seq_inc()
-        
+
         return response[8]
 
     def create_get_parameter_message(self, param):
@@ -183,7 +183,7 @@ class Connector(object):
 
     def get_hex_data(self, data):
         return ', '.join([hex(i) for i in data])
-        
+
     def create_set_sequence_messages(self, sequence):
         """Return an array representing the sysex messages for the given sequence in Arturia's format."""
         msgs = []

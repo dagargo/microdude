@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2015 David García Goñi
+# Copyright 2016 David García Goñi
 #
 # This file is part of MicroDude.
 #
@@ -36,7 +36,7 @@ SYSEX_SEQUENCE_FRAGMENT3 = [ 0x0, 0x20, 0x6B, 0x5, 0x1, 7, 0x23, 0x3A, 4, 0x00, 
 SYSEX_GET_MESSAGE = [0x0, 0x20, 0x6B, 0x5, 0x1, 0x0, 0x0, 0x6 ]
 SYSEX_SET_MESSAGE = [0x0, 0x20, 0x6B, 0x5, 0x1, 0x1, 0x1, 0xB, 0x0 ]
 
-class TestUBEditor(unittest.TestCase):
+class TestConnector(unittest.TestCase):
 
     def setUp(self):
         self.connector = Connector()
@@ -67,7 +67,7 @@ class TestUBEditor(unittest.TestCase):
         self.connector.seq = 0x7F
         self.connector.seq_inc()
         self.assertTrue(self.connector.seq == 0)
-        
+
     def test_create_get_parameter_message(self):
         actual = self.connector.create_get_parameter_message(microdude.connector.RX_CHANNEL)
         self.assertTrue(actual == SYSEX_GET_MESSAGE)

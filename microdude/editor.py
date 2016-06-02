@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2015 David García Goñi
+# Copyright 2016 David García Goñi
 #
 # This file is part of MicroDude.
 #
@@ -35,6 +35,7 @@ version = pkg_resources.get_distribution(PKG_NAME).version
 
 EXTENSION = 'mbseq'
 DEF_FILENAME = 'sequences.' + EXTENSION
+CONN_MSG = 'Connected (firmware version {:s})'
 
 log_level = logging.ERROR
 
@@ -130,7 +131,8 @@ class Editor(object):
     def connect(self):
         self.connector.connect()
         if self.connector.connected():
-            self.set_status_msg('Connected')
+            conn_msg = CONN_MSG.format(self.connector.sw_version)
+            self.set_status_msg(conn_msg)
         else:
             self.set_status_msg('Not connected')
 
