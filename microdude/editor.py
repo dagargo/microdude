@@ -138,7 +138,7 @@ class Editor(object):
 
     def ui_reconnect(self):
         if not self.connector.connected():
-            self.connect();
+            self.connect()
             self.set_ui()
 
     def set_ui(self):
