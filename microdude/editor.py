@@ -15,7 +15,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
+# along with MicroDude. If not, see <http://www.gnu.org/licenses/>.
 
 """MicroDude user interface"""
 
@@ -26,7 +26,8 @@ from gi.repository import GLib
 import logging
 import pkg_resources
 from microdude import connector
-import sys, getopt
+import sys
+import getopt
 
 PKG_NAME = 'microdude'
 
@@ -36,8 +37,10 @@ version = pkg_resources.get_distribution(PKG_NAME).version
 EXTENSION = 'mbseq'
 DEF_FILENAME = 'sequences.' + EXTENSION
 CONN_MSG = 'Connected (firmware version {:s})'
+ERROR_IN_SEQ = 'Error in sequence "{:s}"'
 
 log_level = logging.ERROR
+
 
 def print_help():
     print ('Usage: {:s} [-v]'.format(PKG_NAME))
@@ -57,6 +60,7 @@ for opt, arg in opts:
 logging.basicConfig(level=log_level)
 logger = logging.getLogger(__name__)
 
+
 class Editor(object):
     """MicroDude user interface"""
 
@@ -71,18 +75,20 @@ class Editor(object):
         self.builder = Gtk.Builder()
         self.builder.add_from_string(glade_contents)
         self.main_window = self.builder.get_object('main_window')
-        self.main_window.connect('delete-event', lambda widget, event: self.quit())
+        self.main_window.connect(
+            'delete-event', lambda widget, event: self.quit())
         self.main_window.set_position(Gtk.WindowPosition.CENTER)
         self.about_dialog = self.builder.get_object('about_dialog')
         self.about_dialog.set_position(Gtk.WindowPosition.CENTER)
         self.about_dialog.set_transient_for(self.main_window)
         self.about_dialog.set_version(version)
         self.connect_button = self.builder.get_object('connect_button')
-        self.connect_button.connect('clicked', lambda widget: self.ui_reconnect())
-        self.download_button = self.builder.get_object('download_button')
-        self.download_button.connect('clicked', lambda widget: self.show_download())
-        self.upload_button = self.builder.get_object('upload_button')
-        self.upload_button.connect('clicked', lambda widget: self.show_upload())
+        self.connect_button.connect(
+            'clicked', lambda widget: self.ui_reconnect())
+        self.save_button = self.builder.get_object('save_button')
+        self.save_button.connect('clicked', lambda widget: self.show_save())
+        self.open_button = self.builder.get_object('open_button')
+        self.open_button.connect('clicked', lambda widget: self.show_open())
         self.about_button = self.builder.get_object('about_button')
         self.about_button.connect('clicked', lambda widget: self.show_about())
         self.main_container = self.builder.get_object('main_container')
@@ -100,20 +106,34 @@ class Editor(object):
         self.bend_range = self.builder.get_object('bend_range')
         self.gate_length = self.builder.get_object('gate_length')
         self.sync = self.builder.get_object('sync')
-        self.note_priority.connect('changed', lambda widget: self.set_parameter_from_combo(connector.NOTE_PRIORITY, widget))
-        self.vel_response.connect('changed', lambda widget: self.set_parameter_from_combo(connector.VEL_RESPONSE, widget))
-        self.tx_channel.connect('changed', lambda widget: self.set_parameter_from_combo(connector.TX_CHANNEL, widget))
-        self.rx_channel.connect('changed', lambda widget: self.set_parameter_from_combo(connector.RX_CHANNEL, widget))
-        self.play.connect('changed', lambda widget: self.set_parameter_from_combo(connector.PLAY_ON, widget))
-        self.retriggering.connect('changed', lambda widget: self.set_parameter_from_combo(connector.RETRIGGERING, widget))
-        self.next_sequence.connect('changed', lambda widget: self.set_parameter_from_combo(connector.NEXT_SEQUENCE, widget))
-        self.step_on.connect('changed', lambda widget: self.set_parameter_from_combo(connector.STEP_ON, widget))
-        self.step_length.connect('changed', lambda widget: self.set_parameter_from_combo(connector.STEP_LENGTH, widget))
-        self.lfo_key_retrigger.connect('state-set', lambda widget, state: self.set_parameter_from_switch(connector.LFO_KEY_RETRIGGER, state, widget))
-        self.envelope_legato.connect('state-set', lambda widget, state: self.set_parameter_from_switch(connector.ENVELOPE_LEGATO, state, widget))
-        self.bend_range.connect('value-changed', lambda widget: self.set_parameter_from_spin(connector.BEND_RANGE, widget))
-        self.gate_length.connect('changed', lambda widget: self.set_parameter_from_combo(connector.GATE_LENGTH, widget))
-        self.sync.connect('changed', lambda widget: self.set_parameter_from_combo(connector.SYNC, widget))
+        self.note_priority.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.NOTE_PRIORITY, widget))
+        self.vel_response.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.VEL_RESPONSE, widget))
+        self.tx_channel.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.TX_CHANNEL, widget))
+        self.rx_channel.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.RX_CHANNEL, widget))
+        self.play.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.PLAY_ON, widget))
+        self.retriggering.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.RETRIGGERING, widget))
+        self.next_sequence.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.NEXT_SEQUENCE, widget))
+        self.step_on.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.STEP_ON, widget))
+        self.step_length.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.STEP_LENGTH, widget))
+        self.lfo_key_retrigger.connect(
+            'state-set', lambda widget, state: self.set_parameter_from_switch(connector.LFO_KEY_RETRIGGER, state, widget))
+        self.envelope_legato.connect(
+            'state-set', lambda widget, state: self.set_parameter_from_switch(connector.ENVELOPE_LEGATO, state, widget))
+        self.bend_range.connect(
+            'value-changed', lambda widget: self.set_parameter_from_spin(connector.BEND_RANGE, widget))
+        self.gate_length.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.GATE_LENGTH, widget))
+        self.sync.connect('changed', lambda widget: self.set_parameter_from_combo(
+            connector.SYNC, widget))
         self.statusbar = self.builder.get_object('statusbar')
         self.context_id = self.statusbar.get_context_id(PKG_NAME)
 
@@ -140,6 +160,7 @@ class Editor(object):
         if not self.connector.connected():
             self.connect()
             self.set_ui()
+        return True
 
     def set_ui(self):
         """Load the configuration from the MicroBrute and set the values in the interface."""
@@ -178,49 +199,66 @@ class Editor(object):
             self.set_combo_value(self.sync, value)
             self.configuring = False
             self.update_sensitivity()
-        return True
 
     def update_sensitivity(self):
         self.main_container.set_sensitive(self.connector.connected())
-        self.download_button.set_sensitive(self.connector.connected())
-        self.upload_button.set_sensitive(self.connector.connected())
+        self.save_button.set_sensitive(self.connector.connected())
+        self.open_button.set_sensitive(self.connector.connected())
 
-    def show_upload(self):
+    def show_open(self):
         dialog = Gtk.FileChooserDialog('Open', self.main_window,
-            Gtk.FileChooserAction.OPEN,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+                                       Gtk.FileChooserAction.OPEN,
+                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                        Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
         dialog.add_filter(self.filter_mbseq)
         dialog.add_filter(self.filter_any)
 
         response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            logger.debug('Selected file: ' + dialog.get_filename())
-            self.set_sequence_file(dialog.get_filename())
+        filename = dialog.get_filename()
         dialog.destroy()
+        if response == Gtk.ResponseType.OK:
+            logger.debug('Opening sequences from {:s}...'.format(filename))
+            self.open_sequence_file(filename)
 
-    def set_sequence_file(self, filename):
+    def open_sequence_file(self, filename):
         with open(filename, 'r') as input_file:
             for line in input_file:
-                self.connector.set_sequence(line.rstrip('\n'))
+                seq = line.rstrip('\n')
+                logger.debug('Processing sequence "{:s}"'.format(seq))
+                try:
+                    self.connector.set_sequence(seq)
+                except ValueError as e:
+                    msg = str(e)
+                    desc = ERROR_IN_SEQ.format(seq)
+                    dialog = Gtk.MessageDialog(self.main_window,
+                                               flags=Gtk.DialogFlags.MODAL,
+                                               type=Gtk.MessageType.ERROR,
+                                               buttons=Gtk.ButtonsType.OK,
+                                               message_format=msg)
+                    dialog.connect(
+                        'response', lambda widget, response: widget.destroy())
+                    dialog.format_secondary_text(desc)
+                    logger.error(desc)
+                    dialog.run()
 
-    def show_download(self):
+    def show_save(self):
         dialog = Gtk.FileChooserDialog('Save as', self.main_window,
-            Gtk.FileChooserAction.SAVE,
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+                                       Gtk.FileChooserAction.SAVE,
+                                       (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                        Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
         Gtk.FileChooser.set_do_overwrite_confirmation(dialog, True)
         dialog.add_filter(self.filter_mbseq)
         dialog.add_filter(self.filter_any)
         dialog.set_current_name(DEF_FILENAME)
 
         response = dialog.run()
-        if response == Gtk.ResponseType.OK:
-            logger.debug('New file: ' + dialog.get_filename())
-            self.get_sequence_file(dialog.get_filename())
+        filename = dialog.get_filename()
         dialog.destroy()
+        if response == Gtk.ResponseType.OK:
+            logger.debug('Saving sequences to {:s}...'.format(filename))
+            self.save_sequence_file(filename)
 
-    def get_sequence_file(self, filename):
+    def save_sequence_file(self, filename):
         with open(filename, 'w') as output_file:
             sequences = []
             for i in range(8):
@@ -278,6 +316,3 @@ class Editor(object):
         self.connect()
         self.set_ui()
         Gtk.main()
-
-if __name__ == '__main__':
-    Editor().main()

@@ -448,13 +448,13 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="download_button">
+              <object class="GtkToolButton" id="open_button">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Download</property>
-                <property name="label" translatable="yes">Download sequences</property>
+                <property name="tooltip_text" translatable="yes">Open sequences</property>
+                <property name="label" translatable="yes">Open sequences</property>
                 <property name="use_underline">True</property>
-                <property name="stock_id">gtk-go-down</property>
+                <property name="stock_id">gtk-open</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -462,13 +462,13 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
               </packing>
             </child>
             <child>
-              <object class="GtkToolButton" id="upload_button">
+              <object class="GtkToolButton" id="save_button">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Upload</property>
-                <property name="label" translatable="yes">Upload sequences</property>
+                <property name="tooltip_text" translatable="yes">Save sequences</property>
+                <property name="label" translatable="yes">Save sequences</property>
                 <property name="use_underline">True</property>
-                <property name="stock_id">gtk-go-up</property>
+                <property name="stock_id">gtk-save</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -533,7 +533,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
-                        <property name="valign">start</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
@@ -637,7 +636,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
-                        <property name="valign">start</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
@@ -741,7 +739,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
-                        <property name="valign">start</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
@@ -933,7 +930,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">center</property>
-                        <property name="valign">start</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>

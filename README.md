@@ -8,6 +8,7 @@ Installation
 
 The package dependencies for Ubuntu are:
 - python3
+- python3-setuptools
 - libportmidi-dev
 
 To install symply run `make && sudo make install`.

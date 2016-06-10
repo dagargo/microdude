@@ -15,7 +15,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
+# along with MicroDude. If not, see <http://www.gnu.org/licenses/>.
 
 """MicroDude connector"""
 
@@ -24,9 +24,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-INIT_MSG = [ 0x7E, 0x7F, 0x6, 0x1 ]
-MICROBRUTE_MSG_WO_VERSION = [ 0x7E, 0x1, 0x6, 0x2, 0x0, 0x20, 0x6B, 0x4, 0x0, 0x2, 0x1 ]
-TX_MSG = [ 0x0, 0x20, 0x6B, 0x5, 0x1 ]
+INIT_MSG = [0x7E, 0x7F, 0x6, 0x1]
+MICROBRUTE_MSG_WO_VERSION = [0x7E, 0x1, 0x6,
+                             0x2, 0x0, 0x20, 0x6B, 0x4, 0x0, 0x2, 0x1]
+TX_MSG = [0x0, 0x20, 0x6B, 0x5, 0x1]
 
 RX_CHANNEL = 0x5
 TX_CHANNEL = 0x7
@@ -43,6 +44,12 @@ GATE_LENGTH = 0x36
 STEP_LENGTH = 0x38
 SYNC = 0x3C
 
+SEQ_FILE_ERROR = 'Error in sequences file'
+HANDSHAKE_MSG = 'Handshake ok. Version {:s}.'
+SENDING_MSG = 'Sending message {:s}...'
+RECEIVING_MSG = 'Receiving message {:s}...'
+
+
 class Connector(object):
     """MicroDude connector"""
 
@@ -55,7 +62,7 @@ class Connector(object):
     def seq_inc(self):
         self.seq += 1
         if self.seq == 0x80:
-            self.seq = 0;
+            self.seq = 0
 
     def connected(self):
         return self.port != None
@@ -77,7 +84,7 @@ class Connector(object):
             response = self.rx_message()
             if response[0:11] == MICROBRUTE_MSG_WO_VERSION:
                 self.sw_version = '.'.join([str(i) for i in response[11:15]])
-                logger.debug('Handshake ok. Version {:s}.'.format(self.sw_version))
+                logger.debug(HANDSHAKE_MSG.format(self.sw_version))
             else:
                 logger.debug('Bad handshake. Disconnecting...')
                 self.disconnect()
@@ -110,7 +117,7 @@ class Connector(object):
         self.tx_message(request)
         response = self.rx_message()
 
-        #Checking some bytes and getting the value
+        # Checking some bytes and getting the value
         if response[5] != self.seq:
             logger.warn('Bad sequence number byte')
         if response[6] != 0x23:
@@ -132,7 +139,7 @@ class Connector(object):
         self.tx_message(request)
         response = self.rx_message()
 
-        #Checking some bytes and getting the value
+        # Checking some bytes and getting the value
         if response[5] != self.seq:
             logger.warn('Bad sequence number byte')
         if response[6] != 1:
@@ -171,13 +178,16 @@ class Connector(object):
 
     def tx_message(self, data):
         msg = mido.Message('sysex', data=data)
-        logger.debug('Sending message {:s}...'.format(self.get_hex_data(data)))
+        logger.debug(SENDING_MSG.format(self.get_hex_data(data)))
         self.port.send(msg)
 
     def rx_message(self):
         data_array = []
-        data = self.port.receive().data
-        logger.debug('Receiving message {:s}...'.format(self.get_hex_data(data)))
+        msg = self.port.receive()
+        while msg.type != 'sysex':
+            msg = self.port.receive()
+        data = msg.data
+        logger.debug(RECEIVING_MSG.format(self.get_hex_data(data)))
         data_array.extend(data)
         return data_array
 
@@ -188,12 +198,19 @@ class Connector(object):
         """Return an array representing the sysex messages for the given sequence in Arturia's format."""
         msgs = []
         aux = sequence.split(':')
-        seq_id = int(aux[0][0]) - 1
-        steps = aux[1].split(' ')
-        msgs.append(self.create_set_sequence_message(seq_id, 0, steps[0:0x20]))
-        if len(steps) > 32:
-            msgs.append(self.create_set_sequence_message(seq_id, 0x20, steps[0x20:0x40]))
-        return msgs
+        if not len(aux[0]) or not len(aux[1]):
+            raise ValueError(SEQ_FILE_ERROR)
+        try:
+            seq_id = int(aux[0][0]) - 1
+            steps = aux[1].split(' ')
+            msgs.append(self.create_set_sequence_message(
+                seq_id, 0, steps[0:0x20]))
+            if len(steps) > 32:
+                msgs.append(self.create_set_sequence_message(
+                    seq_id, 0x20, steps[0x20:0x40]))
+            return msgs
+        except ValueError:
+            raise ValueError(SEQ_FILE_ERROR)
 
     def create_set_sequence_message(self, seq_id, offset, steps):
         msg = []
