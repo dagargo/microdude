@@ -26,6 +26,7 @@ from gi.repository import GLib
 import logging
 import pkg_resources
 from microdude import connector
+from microdude.connector import ConnectorError
 import sys
 import getopt
 
@@ -146,7 +147,6 @@ class Editor(object):
         self.filter_any.add_pattern('*')
 
         self.main_window.present()
-        self.update_sensitivity()
 
     def connect(self):
         self.connector.connect()
@@ -198,7 +198,7 @@ class Editor(object):
             value = self.connector.get_parameter(connector.SYNC)
             self.set_combo_value(self.sync, value)
             self.configuring = False
-            self.update_sensitivity()
+        self.update_sensitivity()
 
     def update_sensitivity(self):
         self.main_container.set_sensitive(self.connector.connected())
@@ -222,24 +222,18 @@ class Editor(object):
 
     def open_sequence_file(self, filename):
         with open(filename, 'r') as input_file:
-            for line in input_file:
-                seq = line.rstrip('\n')
-                logger.debug('Processing sequence "{:s}"'.format(seq))
-                try:
-                    self.connector.set_sequence(seq)
-                except ValueError as e:
-                    msg = str(e)
-                    desc = ERROR_IN_SEQ.format(seq)
-                    dialog = Gtk.MessageDialog(self.main_window,
-                                               flags=Gtk.DialogFlags.MODAL,
-                                               type=Gtk.MessageType.ERROR,
-                                               buttons=Gtk.ButtonsType.OK,
-                                               message_format=msg)
-                    dialog.connect(
-                        'response', lambda widget, response: widget.destroy())
-                    dialog.format_secondary_text(desc)
-                    logger.error(desc)
-                    dialog.run()
+            try:
+                for line in input_file:
+                    seq = line.rstrip('\n')
+                    logger.debug('Processing sequence "{:s}"'.format(seq))
+                    try:
+                        self.connector.set_sequence(seq)
+                    except ValueError as e:
+                        desc = ERROR_IN_SEQ.format(seq)
+                        self.show_error(e, desc=desc)
+            except ConnectorError as e:
+                self.show_error(e)
+                self.ui_reconnect()
 
     def show_save(self):
         dialog = Gtk.FileChooserDialog('Save as', self.main_window,
@@ -259,11 +253,15 @@ class Editor(object):
             self.save_sequence_file(filename)
 
     def save_sequence_file(self, filename):
-        with open(filename, 'w') as output_file:
+        try:
             sequences = []
             for i in range(8):
                 sequences.append(self.connector.get_sequence(i))
-            output_file.write('\r\n'.join(sequences))
+            with open(filename, 'w') as output_file:
+                output_file.write('\r\n'.join(sequences))
+        except ConnectorError as e:
+            self.show_error(e)
+            self.ui_reconnect()
 
     def set_status_msg(self, msg):
         logger.info(msg)
@@ -297,7 +295,29 @@ class Editor(object):
         return self.set_parameter_from_interface(param, value)
 
     def set_parameter_from_interface(self, param, value):
-        return True if self.configuring else self.connector.set_parameter(param, value)
+        if self.configuring:
+            value = True
+        else:
+            try:
+                value = self.connector.set_parameter(param, value)
+            except ConnectorError as e:
+                value = False
+                self.show_error(e)
+                self.ui_reconnect()
+        return value
+        
+    def show_error(self, exception, desc=None):
+        msg = str(exception)
+        dialog = Gtk.MessageDialog(self.main_window,
+                                   flags=Gtk.DialogFlags.MODAL,
+                                   type=Gtk.MessageType.ERROR,
+                                   buttons=Gtk.ButtonsType.OK,
+                                   message_format=msg)
+        dialog.connect(
+            'response', lambda widget, response: widget.destroy())
+        if desc != None:
+            dialog.format_secondary_text(desc)
+        dialog.run()
 
     def show_about(self):
         self.about_dialog.run()

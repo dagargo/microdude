@@ -71,7 +71,10 @@ class Connector(object):
         """Disconnect from the MicroBrute."""
         if self.port:
             logger.debug('Disconnecing...')
-            self.port.close()
+            try:
+                self.port.close()
+            except IOError:
+                logger.error('IOError while disconnecting')
             self.port = None
 
     def connect(self):
@@ -179,16 +182,24 @@ class Connector(object):
     def tx_message(self, data):
         msg = mido.Message('sysex', data=data)
         logger.debug(SENDING_MSG.format(self.get_hex_data(data)))
-        self.port.send(msg)
+        try:
+            self.port.send(msg)
+        except IOError:
+            self.disconnect()
+            raise ConnectorError()
 
     def rx_message(self):
         data_array = []
-        msg = self.port.receive()
-        while msg.type != 'sysex':
+        try:
             msg = self.port.receive()
-        data = msg.data
-        logger.debug(RECEIVING_MSG.format(self.get_hex_data(data)))
-        data_array.extend(data)
+            while msg.type != 'sysex':
+               msg = self.port.receive()
+            data = msg.data
+            logger.debug(RECEIVING_MSG.format(self.get_hex_data(data)))
+            data_array.extend(data)
+        except IOError:
+            self.disconnect()
+            raise ConnectorError()
         return data_array
 
     def get_hex_data(self, data):
@@ -239,3 +250,9 @@ class Connector(object):
         msg.append(offset)
         msg.append(0x20)
         return msg
+
+class ConnectorError(IOError):
+    """Raise when there is a Connector error"""
+    
+    def __init__(self):
+        super(ConnectorError, self).__init__('Connection error')
