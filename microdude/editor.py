@@ -27,8 +27,10 @@ import logging
 import pkg_resources
 from microdude import connector
 from microdude.connector import ConnectorError
+from microdude import utils
 import sys
 import getopt
+import mido
 
 PKG_NAME = 'microdude'
 
@@ -61,6 +63,56 @@ for opt, arg in opts:
 logging.basicConfig(level=log_level)
 logger = logging.getLogger(__name__)
 
+logger.debug('Reading glade file...')
+with open(glade_file, 'r') as file:
+    try:
+        glade_contents = file.read()
+    except IOError as e:
+        logger.error('Glade file could not be read. Exiting...')
+        sys.exit(-1)
+
+builder = Gtk.Builder()
+builder.add_from_string(glade_contents)
+
+utils.create_config()
+
+
+class SettingsDialog(object):
+
+    def __init__(self, microdude):
+        self.microdude = microdude
+        self.dialog = builder.get_object('settings_dialog')
+        self.accept = builder.get_object('settings_accept_button')
+        self.cancel = builder.get_object('settings_cancel_button')
+        self.devices = builder.get_object('device_combo')
+        self.device_liststore = builder.get_object('device_liststore')
+        self.dialog.set_transient_for(microdude.main_window)
+        self.dialog.connect('delete-event', lambda widget,
+                            event: widget.hide() or True)
+        self.cancel.connect('clicked', lambda widget: self.dialog.hide())
+        self.accept.connect('clicked', lambda widget: self.save())
+
+    def show(self):
+        self.device_liststore.clear()
+        i = 0
+        for port in mido.get_output_names():
+            logger.debug('Adding port {:s}...'.format(port))
+            self.device_liststore.append([port])
+            if self.microdude.config[utils.DEVICE] == port:
+                logger.debug('Port {:s} is active'.format(port))
+                self.devices.set_active(i)
+            i += 1
+        self.dialog.show()
+
+    def save(self):
+        active = self.devices.get_active()
+        device = self.device_liststore[active][0]
+        self.microdude.config[utils.DEVICE] = device
+        logger.debug('Configuration: {:s}'.format(str(self.microdude.config)))
+        utils.write_config(self.microdude.config)
+        self.microdude.ui_reconnect()
+        self.dialog.hide()
+
 
 class Editor(object):
     """MicroDude user interface"""
@@ -68,45 +120,44 @@ class Editor(object):
     def __init__(self):
         self.connector = connector.Connector()
         self.main_window = None
+        self.config = utils.read_config()
 
     def init_ui(self):
-        file = open(glade_file, 'r')
-        glade_contents = file.read()
-        file.close()
-        self.builder = Gtk.Builder()
-        self.builder.add_from_string(glade_contents)
-        self.main_window = self.builder.get_object('main_window')
+        self.main_window = builder.get_object('main_window')
         self.main_window.connect(
             'delete-event', lambda widget, event: self.quit())
         self.main_window.set_position(Gtk.WindowPosition.CENTER)
-        self.about_dialog = self.builder.get_object('about_dialog')
+        self.about_dialog = builder.get_object('about_dialog')
         self.about_dialog.set_position(Gtk.WindowPosition.CENTER)
         self.about_dialog.set_transient_for(self.main_window)
         self.about_dialog.set_version(version)
-        self.connect_button = self.builder.get_object('connect_button')
+        self.connect_button = builder.get_object('connect_button')
         self.connect_button.connect(
             'clicked', lambda widget: self.ui_reconnect())
-        self.save_button = self.builder.get_object('save_button')
+        self.save_button = builder.get_object('save_button')
         self.save_button.connect('clicked', lambda widget: self.show_save())
-        self.open_button = self.builder.get_object('open_button')
+        self.open_button = builder.get_object('open_button')
         self.open_button.connect('clicked', lambda widget: self.show_open())
-        self.about_button = self.builder.get_object('about_button')
+        self.about_button = builder.get_object('about_button')
         self.about_button.connect('clicked', lambda widget: self.show_about())
-        self.main_container = self.builder.get_object('main_container')
-        self.note_priority = self.builder.get_object('note_priority')
-        self.vel_response = self.builder.get_object('vel_response')
-        self.tx_channel = self.builder.get_object('tx_channel')
-        self.rx_channel = self.builder.get_object('rx_channel')
-        self.play = self.builder.get_object('play')
-        self.retriggering = self.builder.get_object('retriggering')
-        self.next_sequence = self.builder.get_object('next_sequence')
-        self.step_on = self.builder.get_object('step_on')
-        self.step_length = self.builder.get_object('step_length')
-        self.lfo_key_retrigger = self.builder.get_object('lfo_key_retrigger')
-        self.envelope_legato = self.builder.get_object('envelope_legato')
-        self.bend_range = self.builder.get_object('bend_range')
-        self.gate_length = self.builder.get_object('gate_length')
-        self.sync = self.builder.get_object('sync')
+        self.settings_button = builder.get_object('settings_button')
+        self.settings_button.connect(
+            'clicked', lambda widget: self.settings_dialog.show())
+        self.main_container = builder.get_object('main_container')
+        self.note_priority = builder.get_object('note_priority')
+        self.vel_response = builder.get_object('vel_response')
+        self.tx_channel = builder.get_object('tx_channel')
+        self.rx_channel = builder.get_object('rx_channel')
+        self.play = builder.get_object('play')
+        self.retriggering = builder.get_object('retriggering')
+        self.next_sequence = builder.get_object('next_sequence')
+        self.step_on = builder.get_object('step_on')
+        self.step_length = builder.get_object('step_length')
+        self.lfo_key_retrigger = builder.get_object('lfo_key_retrigger')
+        self.envelope_legato = builder.get_object('envelope_legato')
+        self.bend_range = builder.get_object('bend_range')
+        self.gate_length = builder.get_object('gate_length')
+        self.sync = builder.get_object('sync')
         self.note_priority.connect('changed', lambda widget: self.set_parameter_from_combo(
             connector.NOTE_PRIORITY, widget))
         self.vel_response.connect('changed', lambda widget: self.set_parameter_from_combo(
@@ -135,8 +186,9 @@ class Editor(object):
             connector.GATE_LENGTH, widget))
         self.sync.connect('changed', lambda widget: self.set_parameter_from_combo(
             connector.SYNC, widget))
-        self.statusbar = self.builder.get_object('statusbar')
+        self.statusbar = builder.get_object('statusbar')
         self.context_id = self.statusbar.get_context_id(PKG_NAME)
+        self.settings_dialog = SettingsDialog(self)
 
         self.filter_mbseq = Gtk.FileFilter()
         self.filter_mbseq.set_name('MicroBrute sequence files')
@@ -149,7 +201,8 @@ class Editor(object):
         self.main_window.present()
 
     def connect(self):
-        self.connector.connect()
+        device = self.config[utils.DEVICE]
+        self.connector.connect(device)
         if self.connector.connected():
             conn_msg = CONN_MSG.format(self.connector.sw_version)
             self.set_status_msg(conn_msg)

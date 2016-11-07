@@ -77,11 +77,11 @@ class Connector(object):
                 logger.error('IOError while disconnecting')
             self.port = None
 
-    def connect(self):
+    def connect(self, device):
         """Connect to the MicroBrute."""
         logger.debug('Connecting...')
         try:
-            self.port = mido.open_ioport('MicroBrute MIDI 1')
+            self.port = mido.open_ioport(device)
             logger.debug('Handshaking...')
             self.tx_message(INIT_MSG)
             response = self.rx_message()
@@ -193,7 +193,7 @@ class Connector(object):
         try:
             msg = self.port.receive()
             while msg.type != 'sysex':
-               msg = self.port.receive()
+                msg = self.port.receive()
             data = msg.data
             logger.debug(RECEIVING_MSG.format(self.get_hex_data(data)))
             data_array.extend(data)
@@ -251,8 +251,9 @@ class Connector(object):
         msg.append(0x20)
         return msg
 
+
 class ConnectorError(IOError):
     """Raise when there is a Connector error"""
-    
+
     def __init__(self):
         super(ConnectorError, self).__init__('Connection error')
