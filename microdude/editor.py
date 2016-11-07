@@ -283,29 +283,26 @@ class Editor(object):
 
     def set_parameter_from_spin(self, param, spin):
         value = spin.get_value_as_int()
-        return self.set_parameter_from_interface(param, value)
+        self.set_parameter_from_interface(param, value)
 
     def set_parameter_from_combo(self, param, combo):
         value = combo.get_model()[combo.get_active()][1]
-        return self.set_parameter_from_interface(param, value)
+        self.set_parameter_from_interface(param, value)
 
     def set_parameter_from_switch(self, param, value, switch):
         switch.set_state(value)
         switch.set_active(value)
-        return self.set_parameter_from_interface(param, value)
+        self.set_parameter_from_interface(param, value)
 
     def set_parameter_from_interface(self, param, value):
-        if self.configuring:
-            value = True
-        else:
+        if not self.configuring:
             try:
                 value = self.connector.set_parameter(param, value)
             except ConnectorError as e:
                 value = False
                 self.show_error(e)
                 self.ui_reconnect()
-        return value
-        
+
     def show_error(self, exception, desc=None):
         msg = str(exception)
         dialog = Gtk.MessageDialog(self.main_window,
@@ -322,14 +319,12 @@ class Editor(object):
     def show_about(self):
         self.about_dialog.run()
         self.about_dialog.hide()
-        return True
 
     def quit(self):
         logger.debug('Quitting...')
         self.connector.disconnect()
         self.main_window.hide()
         Gtk.main_quit()
-        return True
 
     def main(self):
         self.init_ui()
