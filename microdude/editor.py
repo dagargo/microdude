@@ -63,16 +63,8 @@ for opt, arg in opts:
 logging.basicConfig(level=log_level)
 logger = logging.getLogger(__name__)
 
-logger.debug('Reading glade file...')
-with open(glade_file, 'r') as file:
-    try:
-        glade_contents = file.read()
-    except IOError as e:
-        logger.error('Glade file could not be read. Exiting...')
-        sys.exit(-1)
-
 builder = Gtk.Builder()
-builder.add_from_string(glade_contents)
+builder.add_from_file(glade_file)
 
 utils.create_config()
 
