@@ -17,9 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with Phatty. If not, see <http://www.gnu.org/licenses/>.
 
-"""Phatty general utils"""
+"""MicroDude utils"""
 
-from phatty import connector
+from microdude import connector
 import json
 from os import makedirs
 from os.path import expanduser

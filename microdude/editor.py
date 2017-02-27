@@ -46,7 +46,7 @@ log_level = logging.ERROR
 
 
 def print_help():
-    print ('Usage: {:s} [-v]'.format(PKG_NAME))
+    print('Usage: {:s} [-v]'.format(PKG_NAME))
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hv")
