@@ -12,7 +12,7 @@ setup(name='MicroDude',
     packages=find_packages(exclude=['doc', 'tests']),
     package_data={'microdude': ['resources/*']},
     license='GNU General Public License v3 (GPLv3)',
-    install_requires=['mido>=1.1.24', 'python-rtmidi>=1.0.0'],
+    install_requires=['mido>=1.2.1', 'python-rtmidi>=1.0.0'],
     test_suite='tests',
     tests_require=[]
 )

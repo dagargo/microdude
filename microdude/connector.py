@@ -20,9 +20,13 @@
 """MicroDude connector"""
 
 import mido
+import time
 import logging
 
 logger = logging.getLogger(__name__)
+
+mido.set_backend('mido.backends.rtmidi')
+logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
 
 INIT_MSG = [0x7E, 0x7F, 0x6, 0x1]
 MICROBRUTE_MSG_WO_VERSION = [0x7E, 0x1, 0x6,
@@ -44,10 +48,17 @@ GATE_LENGTH = 0x36
 STEP_LENGTH = 0x38
 SYNC = 0x3C
 
+RECEIVE_RETRIES = 50
+RETRY_SLEEP_TIME = 0.1
+
 SEQ_FILE_ERROR = 'Error in sequences file'
 HANDSHAKE_MSG = 'Handshake ok. Version {:s}.'
 SENDING_MSG = 'Sending message {:s}...'
 RECEIVING_MSG = 'Receiving message {:s}...'
+
+
+def get_ports():
+    return mido.get_ioport_names()
 
 
 class Connector(object):
@@ -92,7 +103,8 @@ class Connector(object):
                 logger.debug('Bad handshake. Disconnecting...')
                 self.disconnect()
         except IOError as e:
-            logger.error('IOError while connecting')
+            logger.error('IOError while connecting: "{:s}"'.format(str(e)))
+            self.disconnect()
 
     def set_sequence(self, sequence):
         """Set the sequence in Arturia's format in the MicroBrute."""
@@ -189,18 +201,21 @@ class Connector(object):
             raise ConnectorError()
 
     def rx_message(self):
-        data_array = []
         try:
-            msg = self.port.receive()
-            while msg.type != 'sysex':
-                msg = self.port.receive()
-            data = msg.data
-            logger.debug(RECEIVING_MSG.format(self.get_hex_data(data)))
-            data_array.extend(data)
+            for i in range(0, RECEIVE_RETRIES):
+                for msg in self.port.iter_pending():
+                    if msg.type == 'sysex':
+                        logger.debug('Receiving message {:s}...'.format(
+                            self.get_hex_data(msg.data)))
+                        data_array = []
+                        data_array.extend(msg.data)
+                        return data_array
+                time.sleep(RETRY_SLEEP_TIME)
         except IOError:
             self.disconnect()
             raise ConnectorError()
-        return data_array
+        self.disconnect()
+        raise ConnectorError()
 
     def get_hex_data(self, data):
         return ', '.join([hex(i) for i in data])

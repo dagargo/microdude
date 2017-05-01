@@ -87,7 +87,7 @@ class SettingsDialog(object):
     def show(self):
         self.device_liststore.clear()
         i = 0
-        for port in mido.get_output_names():
+        for port in connector.get_ports():
             logger.debug('Adding port {:s}...'.format(port))
             self.device_liststore.append([port])
             if self.microdude.config[utils.DEVICE] == port:
@@ -202,10 +202,9 @@ class Editor(object):
             self.set_status_msg('Not connected')
 
     def ui_reconnect(self):
-        if not self.connector.connected():
-            self.connect()
-            self.set_ui()
-        return True
+        self.connector.disconnect()
+        self.connect()
+        self.set_ui()
 
     def set_ui(self):
         """Load the configuration from the MicroBrute and set the values in the interface."""
