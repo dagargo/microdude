@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2016 David García Goñi
+# Copyright 2017 David García Goñi
 #
 # This file is part of Phatty.
 #
