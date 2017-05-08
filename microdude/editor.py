@@ -30,7 +30,6 @@ from microdude.connector import ConnectorError
 from microdude import utils
 import sys
 import getopt
-import mido
 
 PKG_NAME = 'microdude'
 
