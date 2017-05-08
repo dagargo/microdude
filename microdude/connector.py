@@ -81,7 +81,7 @@ class Connector(object):
     def disconnect(self):
         """Disconnect from the MicroBrute."""
         if self.port:
-            logger.debug('Disconnecing...')
+            logger.debug('Disconnecting...')
             try:
                 self.port.close()
             except IOError:
