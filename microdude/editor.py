@@ -131,8 +131,8 @@ class Editor(object):
         self.open_button.connect('clicked', lambda widget: self.show_open())
         self.about_button = builder.get_object('about_button')
         self.about_button.connect('clicked', lambda widget: self.show_about())
-        self.settings_button = builder.get_object('settings_button')
-        self.settings_button.connect(
+        self.preferences_button = builder.get_object('preferences_button')
+        self.preferences_button.connect(
             'clicked', lambda widget: self.settings_dialog.show())
         self.main_container = builder.get_object('main_container')
         self.note_priority = builder.get_object('note_priority')
