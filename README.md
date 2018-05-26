@@ -40,7 +40,7 @@ True
 12
 >>> c.set_sequence('7:36 x x 36 x x 36 x x 36 x x 32 x 39 x')
 >>> c.get_sequence(6)
-'8:36 x x 36 x x 36 x x 36 x x 32 x 39 x'
+'7:36 x x 36 x x 36 x x 36 x x 32 x 39 x'
 ```
 Notice that while the `get_sequence` method is 0 based index the sequence string returned follows the Arturia specifications and is 1 based index.
 
