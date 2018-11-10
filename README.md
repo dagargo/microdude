@@ -4,6 +4,8 @@ MicroDude is an editor for Arturia MicroBrute. It offers all the funcionality of
 
 Also, it is possible to use MicroDude from other Python programs.
 
+![Screenshot](/doc/screenshot.png)
+
 ## Installation
 MicroDude is a Python package that is installed the standard way with `python3 setup.py install`. However, as it contains desktop application related resources it is installed with `make`.
 
