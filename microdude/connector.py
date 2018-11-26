@@ -25,7 +25,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-mido.set_backend('mido.backends.portmidi')
+mido.set_backend('mido.backends.rtmidi')
 logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
 
 INIT_MSG = [0x7E, 0x7F, 0x6, 0x1]
