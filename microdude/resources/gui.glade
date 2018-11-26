@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 
+<!-- Generated with glade 3.22.1
 
-Copyright (C) 2017 David García Goñi
+Copyright (C) 2018 David García Goñi
 
 This file is part of MicroDude.
 
@@ -29,12 +29,15 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     <property name="can_focus">False</property>
     <property name="type_hint">normal</property>
     <property name="program_name">MicroDude</property>
-    <property name="copyright" translatable="yes">Copyright © 2017 David García Goñi</property>
+    <property name="copyright" translatable="yes">Copyright © 2018 David García Goñi</property>
     <property name="comments" translatable="yes">MicroDude is an editor for Arturia MicroBrute</property>
     <property name="website">https://github.com/dagargo/microdude</property>
     <property name="authors">David García Goñi&lt;dagargo@gmail.com&gt;</property>
     <property name="logo_icon_name">microdude</property>
     <property name="license_type">gpl-3-0</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox" id="aboutdialog-vbox1">
         <property name="can_focus">False</property>
@@ -76,6 +79,9 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="type_hint">dialog</property>
+    <child>
+      <placeholder/>
+    </child>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -526,6 +532,9 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">MicroDude</property>
     <property name="resizable">False</property>
+    <child>
+      <placeholder/>
+    </child>
     <child>
       <object class="GtkBox" id="box1">
         <property name="visible">True</property>

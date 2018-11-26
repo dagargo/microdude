@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright 2017 David García Goñi
+# Copyright 2018 David García Goñi
 #
 # This file is part of MicroDude.
 #
