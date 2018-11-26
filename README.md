@@ -1,6 +1,8 @@
 # MicroDude
 
-MicroDude is an editor for Arturia MicroBrute. It offers all the funcionality of Arturia MicroBrute Connection but the firmware upload and the factory patterns reset.
+MicroDude is an editor for Arturia MicroBrute. It offers all the functionality of Arturia MicroBrute Connection but the firmware upload and the factory patterns reset.
+
+![Screenshot](doc/screenshot.png)
 
 Also, it is possible to use MicroDude from other Python programs.
 
