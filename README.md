@@ -7,18 +7,15 @@ MicroDude is an editor for Arturia MicroBrute. It offers all the functionality o
 Also, it is possible to use MicroDude from other Python programs.
 
 ## Installation
-MicroDude is a Python package that is installed the standard way with `python3 setup.py install`. However, as it contains desktop application related resources it is installed with `make`.
+MicroDude is a Python package that is installed the standard way with `python3 setup.py install`. However, as it contains desktop application related resources, it is installed with `make`.
 
 The package dependencies for Debian based distributions are:
 - python3
 - python3-setuptools
-- make
-- gcc and g++
-- libpython3-dev
-- libasound2-dev
-- libjack-jackd2-dev
+- python3-mido
+- libportmidi-dev
 
-You can easily install them by running `sudo apt-get install python3 python3-setuptools make gcc g++ libpython3-dev libasound2-dev libjack-jackd2-dev`.
+You can easily install them by running `sudo apt-get install python3 python3-setuptools python3-mido libportmidi-dev`.
 
 To install MicroDude simply run `make && sudo make install`.
 
