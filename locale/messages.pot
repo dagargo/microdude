@@ -1,0 +1,235 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-29 17:34+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: microdude/resources/gui.glade:33
+msgid "MicroDude is an editor for Arturia MicroBrute"
+msgstr ""
+
+#: microdude/resources/gui.glade:76 microdude/resources/gui.glade:615
+#: microdude/resources/gui.glade:616
+msgid "Preferences"
+msgstr ""
+
+#: microdude/resources/gui.glade:148
+msgid "Device"
+msgstr ""
+
+#: microdude/resources/gui.glade:193
+msgid "Short"
+msgstr ""
+
+#: microdude/resources/gui.glade:197
+msgid "Medium"
+msgstr ""
+
+#: microdude/resources/gui.glade:201
+msgid "Long"
+msgstr ""
+
+#: microdude/resources/gui.glade:215
+msgid "High"
+msgstr ""
+
+#: microdude/resources/gui.glade:219
+msgid "Low"
+msgstr ""
+
+#: microdude/resources/gui.glade:223
+msgid "Last"
+msgstr ""
+
+#: microdude/resources/gui.glade:237
+msgid "Hold"
+msgstr ""
+
+#: microdude/resources/gui.glade:241
+msgid "Note On"
+msgstr ""
+
+#: microdude/resources/gui.glade:255
+msgid "Any"
+msgstr ""
+
+#: microdude/resources/gui.glade:333
+msgid "At End"
+msgstr ""
+
+#: microdude/resources/gui.glade:337
+msgid "Instant Continuation"
+msgstr ""
+
+#: microdude/resources/gui.glade:341
+msgid "Instant Reset"
+msgstr ""
+
+#: microdude/resources/gui.glade:355
+msgid "None"
+msgstr ""
+
+#: microdude/resources/gui.glade:359
+msgid "Reset"
+msgstr ""
+
+#: microdude/resources/gui.glade:363
+msgid "Reset But Legato"
+msgstr ""
+
+#: microdude/resources/gui.glade:403
+msgid "Clock"
+msgstr ""
+
+#: microdude/resources/gui.glade:407
+msgid "Gate"
+msgstr ""
+
+#: microdude/resources/gui.glade:421
+msgid "External"
+msgstr ""
+
+#: microdude/resources/gui.glade:425
+msgid "Internal"
+msgstr ""
+
+#: microdude/resources/gui.glade:429
+msgid "Auto"
+msgstr ""
+
+#: microdude/resources/gui.glade:517
+msgid "Exponential"
+msgstr ""
+
+#: microdude/resources/gui.glade:521
+msgid "Linear"
+msgstr ""
+
+#: microdude/resources/gui.glade:525
+msgid "Logarithmic"
+msgstr ""
+
+#: microdude/resources/gui.glade:553 microdude/resources/gui.glade:554
+msgid "Connect"
+msgstr ""
+
+#: microdude/resources/gui.glade:577 microdude/resources/gui.glade:578
+msgid "Upload sequences"
+msgstr ""
+
+#: microdude/resources/gui.glade:591 microdude/resources/gui.glade:592
+msgid "Download sequences"
+msgstr ""
+
+#: microdude/resources/gui.glade:639 microdude/resources/gui.glade:640
+msgid "About"
+msgstr ""
+
+#: microdude/resources/gui.glade:694
+msgid "Transmit Channel"
+msgstr ""
+
+#: microdude/resources/gui.glade:706
+msgid "Receive Channel"
+msgstr ""
+
+#: microdude/resources/gui.glade:760
+msgid "MIDI"
+msgstr ""
+
+#: microdude/resources/gui.glade:798
+msgid "Note Priority"
+msgstr ""
+
+#: microdude/resources/gui.glade:810
+msgid "Velocity Response"
+msgstr ""
+
+#: microdude/resources/gui.glade:865
+msgid "Keyboard Parameters"
+msgstr ""
+
+#: microdude/resources/gui.glade:904
+msgid "Play"
+msgstr ""
+
+#: microdude/resources/gui.glade:916
+msgid "Sequence Retrigger"
+msgstr ""
+
+#: microdude/resources/gui.glade:928
+msgid "Sequence Change"
+msgstr ""
+
+#: microdude/resources/gui.glade:940
+msgid "Step On"
+msgstr ""
+
+#: microdude/resources/gui.glade:952
+msgid "Step Length"
+msgstr ""
+
+#: microdude/resources/gui.glade:1062
+msgid "Sequencer Control"
+msgstr ""
+
+#: microdude/resources/gui.glade:1100
+msgid "LFO Key Retrigger"
+msgstr ""
+
+#: microdude/resources/gui.glade:1112
+msgid "Envelope Legato"
+msgstr ""
+
+#: microdude/resources/gui.glade:1124
+msgid "Bend Range"
+msgstr ""
+
+#: microdude/resources/gui.glade:1136
+msgid "Gate Length"
+msgstr ""
+
+#: microdude/resources/gui.glade:1148
+msgid "Synchronization"
+msgstr ""
+
+#: microdude/resources/gui.glade:1241
+msgid "Module Parameters"
+msgstr ""
+
+#: microdude/editor.py:46
+msgid "sequences"
+msgstr ""
+
+#: microdude/editor.py:190
+msgid "MicroBrute sequence files"
+msgstr ""
+
+#: microdude/editor.py:194
+msgid "Any files"
+msgstr ""
+
+#: microdude/editor.py:203
+msgid "Connected (firmware version {:s})"
+msgstr ""
+
+#: microdude/editor.py:207
+msgid "Not connected"
+msgstr ""
+
+#: microdude/editor.py:281
+msgid "Error in sequence \"{:s}\""
+msgstr ""

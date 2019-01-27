@@ -10,12 +10,13 @@ Also, it is possible to use MicroDude from other Python programs.
 MicroDude is a Python package that is installed the standard way with `python3 setup.py install`. However, as it contains desktop application related resources, it is installed with `make`.
 
 The package dependencies for Debian based distributions are:
+- make
 - python3
 - python3-setuptools
 - python3-mido
 - libportmidi-dev
 
-You can easily install them by running `sudo apt-get install python3 python3-setuptools python3-mido libportmidi-dev`.
+You can easily install them by running `sudo apt-get install make python3 python3-setuptools python3-mido libportmidi-dev`.
 
 To install MicroDude simply run `make && sudo make install`.
 
@@ -47,3 +48,9 @@ Lastly, you can close the connector to free the resources.
 ```
 >>> c.disconnect()
 ```
+
+## How to add a new localization
+
+To add a new translation file for locale X, run `msginit -i locale/messages.pot -o locale/X.po`.
+
+In case there are new texts to be translated, the pot file needs to be updated. To do this, run `make update_pot`.
