@@ -57,7 +57,7 @@ msgstr "Última"
 
 #: microdude/resources/gui.glade:237
 msgid "Hold"
-msgstr "Mantenida"
+msgstr "Continua"
 
 #: microdude/resources/gui.glade:241
 msgid "Note On"
@@ -169,11 +169,11 @@ msgstr "Reproducción"
 
 #: microdude/resources/gui.glade:916
 msgid "Sequence Retrigger"
-msgstr "Redisparo"
+msgstr "Redisparo de secuencia"
 
 #: microdude/resources/gui.glade:928
 msgid "Sequence Change"
-msgstr "Cambio de secuencia al"
+msgstr "Cambio de secuencia"
 
 #: microdude/resources/gui.glade:940
 msgid "Step On"
