@@ -22,11 +22,17 @@
 import mido
 import time
 import logging
+import importlib.util
 
 logger = logging.getLogger(__name__)
 
-mido.set_backend('mido.backends.portmidi')
-logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
+spec = importlib.util.find_spec('rtmidi')
+if spec:
+    backend = 'mido.backends.rtmidi'
+else:
+    backend = 'mido.backends.portmidi'
+
+mido.set_backend(backend)
 
 INIT_MSG = [0x7E, 0x7F, 0x6, 0x1]
 MICROBRUTE_MSG_WO_VERSION = [0x7E, 0x1, 0x6,
@@ -90,9 +96,10 @@ class Connector(object):
 
     def connect(self, device):
         """Connect to the MicroBrute."""
-        logger.debug('Connecting...')
+        logger.debug('Connecting to {:s}...'.format(device))
         try:
             self.port = mido.open_ioport(device)
+            logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
             logger.debug('Handshaking...')
             self.tx_message(INIT_MSG)
             response = self.rx_message()
