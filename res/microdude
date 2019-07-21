@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 
 from microdude.editor import Editor
+import signal
 
-Editor().main()
+
+def quit(signum, frame):
+    editor.quit()
+
+
+signal.signal(signal.SIGINT, quit)
+
+editor = Editor()
+editor.main()
