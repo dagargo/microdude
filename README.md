@@ -1,5 +1,4 @@
 # MicroDude
-
 MicroDude is an editor for Arturia MicroBrute. It offers all the functionality of Arturia MicroBrute Connection but the firmware upload and the factory patterns reset.
 
 ![Screenshot](doc/screenshot.png)
@@ -17,7 +16,7 @@ The package dependencies for Debian based distributions are:
 - python3-rtmidi
 
 You can easily install them by running `sudo apt-get install make python3 python3-setuptools python3-mido python3-rtmidi`.
-In case `python3-rtmidi` is not available, `libportmidi` will be used as the backend. You can install it with `sudo apt-get install libportmidi-dev`.
+sIn case `python-rtmidi` is not available, `PortMidi` will be used as the backend. You can install it with `sudo apt-get install libportmidi-dev`.
 
 To install MicroDude simply run `make && sudo make install`.
 
@@ -51,7 +50,6 @@ Lastly, you can close the connector to free the resources.
 ```
 
 ## How to add a new localization
-
 To add a new translation file for locale X, run `msginit -i locale/messages.pot -o locale/X.po`.
 
 In case there are new texts to be translated, the pot file needs to be updated. To do this, run `make update_pot`.
