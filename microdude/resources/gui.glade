@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.22.1
 
-Copyright (C) 2018 David García Goñi
+Copyright (C) David García Goñi
 
 This file is part of MicroDude.
 
@@ -29,7 +29,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     <property name="can_focus">False</property>
     <property name="type_hint">normal</property>
     <property name="program_name">MicroDude</property>
-    <property name="copyright" translatable="yes">Copyright © 2018 David García Goñi</property>
+    <property name="copyright">Copyright © 2018 David García Goñi</property>
     <property name="comments" translatable="yes">MicroDude is an editor for Arturia MicroBrute</property>
     <property name="website">https://github.com/dagargo/microdude</property>
     <property name="authors">David García Goñi&lt;dagargo@gmail.com&gt;</property>
@@ -72,9 +72,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     </columns>
   </object>
   <object class="GtkDialog" id="settings_dialog">
-    <property name="name">Preferences</property>
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Settings</property>
+    <property name="title" translatable="yes">Preferences</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
@@ -204,28 +203,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="nexts">
-    <columns>
-      <!-- column-name caption -->
-      <column type="gchararray"/>
-      <!-- column-name value -->
-      <column type="guint"/>
-    </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">End</col>
-        <col id="1">0</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Instant Continuation</col>
-        <col id="1">2</col>
-      </row>
-      <row>
-        <col id="0" translatable="yes">Instant Reset</col>
-        <col id="1">1</col>
-      </row>
-    </data>
-  </object>
   <object class="GtkListStore" id="note_priorities">
     <columns>
       <!-- column-name caption -->
@@ -279,72 +256,72 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
         <col id="1">16</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1</col>
+        <col id="0">1</col>
         <col id="1">0</col>
       </row>
       <row>
-        <col id="0" translatable="yes">2</col>
+        <col id="0">2</col>
         <col id="1">1</col>
       </row>
       <row>
-        <col id="0" translatable="yes">3</col>
+        <col id="0">3</col>
         <col id="1">2</col>
       </row>
       <row>
-        <col id="0" translatable="yes">4</col>
+        <col id="0">4</col>
         <col id="1">3</col>
       </row>
       <row>
-        <col id="0" translatable="yes">5</col>
+        <col id="0">5</col>
         <col id="1">4</col>
       </row>
       <row>
-        <col id="0" translatable="yes">6</col>
+        <col id="0">6</col>
         <col id="1">5</col>
       </row>
       <row>
-        <col id="0" translatable="yes">7</col>
+        <col id="0">7</col>
         <col id="1">6</col>
       </row>
       <row>
-        <col id="0" translatable="yes">8</col>
+        <col id="0">8</col>
         <col id="1">7</col>
       </row>
       <row>
-        <col id="0" translatable="yes">9</col>
+        <col id="0">9</col>
         <col id="1">8</col>
       </row>
       <row>
-        <col id="0" translatable="yes">10</col>
+        <col id="0">10</col>
         <col id="1">9</col>
       </row>
       <row>
-        <col id="0" translatable="yes">11</col>
+        <col id="0">11</col>
         <col id="1">10</col>
       </row>
       <row>
-        <col id="0" translatable="yes">12</col>
+        <col id="0">12</col>
         <col id="1">11</col>
       </row>
       <row>
-        <col id="0" translatable="yes">13</col>
+        <col id="0">13</col>
         <col id="1">12</col>
       </row>
       <row>
-        <col id="0" translatable="yes">14</col>
+        <col id="0">14</col>
         <col id="1">13</col>
       </row>
       <row>
-        <col id="0" translatable="yes">15</col>
+        <col id="0">15</col>
         <col id="1">14</col>
       </row>
       <row>
-        <col id="0" translatable="yes">16</col>
+        <col id="0">16</col>
         <col id="1">15</col>
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="retriggerings">
+  <object class="GtkListStore" id="sequence_change_modes">
     <columns>
       <!-- column-name caption -->
       <column type="gchararray"/>
@@ -353,16 +330,38 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">Legato</col>
+        <col id="0" translatable="yes">At End</col>
+        <col id="1">0</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Instant Continuation</col>
+        <col id="1">2</col>
+      </row>
+      <row>
+        <col id="0" translatable="yes">Instant Reset</col>
         <col id="1">1</col>
+      </row>
+    </data>
+  </object>
+  <object class="GtkListStore" id="sequence_retrigger_modes">
+    <columns>
+      <!-- column-name caption -->
+      <column type="gchararray"/>
+      <!-- column-name value -->
+      <column type="guint"/>
+    </columns>
+    <data>
+      <row>
+        <col id="0" translatable="yes">None</col>
+        <col id="1">2</col>
       </row>
       <row>
         <col id="0" translatable="yes">Reset</col>
         <col id="1">0</col>
       </row>
       <row>
-        <col id="0" translatable="yes">None</col>
-        <col id="1">2</col>
+        <col id="0" translatable="yes">Reset But Legato</col>
+        <col id="1">1</col>
       </row>
     </data>
   </object>
@@ -375,19 +374,19 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">1/32</col>
+        <col id="0">1/32</col>
         <col id="1">32</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1/16</col>
+        <col id="0">1/16</col>
         <col id="1">16</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1/8</col>
+        <col id="0">1/8</col>
         <col id="1">8</col>
       </row>
       <row>
-        <col id="0" translatable="yes">1/4</col>
+        <col id="0">1/4</col>
         <col id="1">4</col>
       </row>
     </data>
@@ -410,7 +409,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
       </row>
     </data>
   </object>
-  <object class="GtkListStore" id="syncs">
+  <object class="GtkListStore" id="synchronization_modes">
     <columns>
       <!-- column-name caption -->
       <column type="gchararray"/>
@@ -441,67 +440,67 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
     </columns>
     <data>
       <row>
-        <col id="0" translatable="yes">1</col>
+        <col id="0">1</col>
         <col id="1">0</col>
       </row>
       <row>
-        <col id="0" translatable="yes">2</col>
+        <col id="0">2</col>
         <col id="1">1</col>
       </row>
       <row>
-        <col id="0" translatable="yes">3</col>
+        <col id="0">3</col>
         <col id="1">2</col>
       </row>
       <row>
-        <col id="0" translatable="yes">4</col>
+        <col id="0">4</col>
         <col id="1">3</col>
       </row>
       <row>
-        <col id="0" translatable="yes">5</col>
+        <col id="0">5</col>
         <col id="1">4</col>
       </row>
       <row>
-        <col id="0" translatable="yes">6</col>
+        <col id="0">6</col>
         <col id="1">5</col>
       </row>
       <row>
-        <col id="0" translatable="yes">7</col>
+        <col id="0">7</col>
         <col id="1">6</col>
       </row>
       <row>
-        <col id="0" translatable="yes">8</col>
+        <col id="0">8</col>
         <col id="1">7</col>
       </row>
       <row>
-        <col id="0" translatable="yes">9</col>
+        <col id="0">9</col>
         <col id="1">8</col>
       </row>
       <row>
-        <col id="0" translatable="yes">10</col>
+        <col id="0">10</col>
         <col id="1">9</col>
       </row>
       <row>
-        <col id="0" translatable="yes">11</col>
+        <col id="0">11</col>
         <col id="1">10</col>
       </row>
       <row>
-        <col id="0" translatable="yes">12</col>
+        <col id="0">12</col>
         <col id="1">11</col>
       </row>
       <row>
-        <col id="0" translatable="yes">13</col>
+        <col id="0">13</col>
         <col id="1">12</col>
       </row>
       <row>
-        <col id="0" translatable="yes">14</col>
+        <col id="0">14</col>
         <col id="1">13</col>
       </row>
       <row>
-        <col id="0" translatable="yes">15</col>
+        <col id="0">15</col>
         <col id="1">14</col>
       </row>
       <row>
-        <col id="0" translatable="yes">16</col>
+        <col id="0">16</col>
         <col id="1">15</col>
       </row>
     </data>
@@ -530,7 +529,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">MicroDude</property>
+    <property name="title">MicroDude</property>
     <property name="resizable">False</property>
     <child>
       <placeholder/>
@@ -542,6 +541,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
+        <property name="spacing">6</property>
         <child>
           <object class="GtkToolbar" id="toolbar1">
             <property name="visible">True</property>
@@ -574,8 +574,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
               <object class="GtkToolButton" id="open_button">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Open sequences</property>
-                <property name="label" translatable="yes">Open sequences</property>
+                <property name="tooltip_text" translatable="yes">Upload sequences</property>
+                <property name="label" translatable="yes">Upload sequences</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-open</property>
               </object>
@@ -588,8 +588,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
               <object class="GtkToolButton" id="save_button">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="tooltip_text" translatable="yes">Save sequences</property>
-                <property name="label" translatable="yes">Save sequences</property>
+                <property name="tooltip_text" translatable="yes">Download sequences</property>
+                <property name="label" translatable="yes">Download sequences</property>
                 <property name="use_underline">True</property>
                 <property name="stock_id">gtk-save</property>
               </object>
@@ -659,10 +659,9 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
             <property name="can_focus">False</property>
             <property name="margin_left">6</property>
             <property name="margin_right">6</property>
-            <property name="margin_top">6</property>
-            <property name="margin_bottom">6</property>
             <property name="row_spacing">6</property>
             <property name="column_spacing">6</property>
+            <property name="column_homogeneous">True</property>
             <child>
               <object class="GtkFrame" id="frame1">
                 <property name="visible">True</property>
@@ -679,11 +678,115 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                       <object class="GtkGrid" id="grid2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">center</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
                         <property name="margin_bottom">6</property>
+                        <property name="hexpand">True</property>
+                        <property name="row_spacing">6</property>
+                        <property name="column_spacing">6</property>
+                        <property name="row_homogeneous">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label3">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="label" translatable="yes">Transmit Channel</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="label4">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">end</property>
+                            <property name="label" translatable="yes">Receive Channel</property>
+                          </object>
+                          <packing>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="tx_channel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">transmit_channels</property>
+                            <property name="active">0</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext6"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkComboBox" id="rx_channel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">receive_channels</property>
+                            <property name="active">0</property>
+                            <property name="id_column">0</property>
+                            <child>
+                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
+                              <attributes>
+                                <attribute name="text">0</attribute>
+                              </attributes>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="left_attach">1</property>
+                            <property name="top_attach">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label6">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">MIDI</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkFrame" id="frame2">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">in</property>
+                <child>
+                  <object class="GtkAlignment" id="alignment2">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <child>
+                      <object class="GtkGrid" id="grid3">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">6</property>
+                        <property name="hexpand">True</property>
                         <property name="row_spacing">6</property>
                         <property name="column_spacing">6</property>
                         <property name="row_homogeneous">True</property>
@@ -715,6 +818,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="note_priority">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">note_priorities</property>
                             <property name="active">0</property>
                             <property name="id_column">0</property>
@@ -734,6 +838,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="vel_response">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">velocity_responses</property>
                             <property name="active">0</property>
                             <property name="id_column">0</property>
@@ -767,108 +872,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
               </packing>
             </child>
             <child>
-              <object class="GtkFrame" id="frame2">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="label_xalign">0</property>
-                <property name="shadow_type">in</property>
-                <child>
-                  <object class="GtkAlignment" id="alignment2">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <child>
-                      <object class="GtkGrid" id="grid3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="margin_left">6</property>
-                        <property name="margin_right">6</property>
-                        <property name="margin_top">6</property>
-                        <property name="margin_bottom">6</property>
-                        <property name="row_spacing">6</property>
-                        <property name="column_spacing">6</property>
-                        <property name="row_homogeneous">True</property>
-                        <child>
-                          <object class="GtkLabel" id="label3">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="label" translatable="yes">Transmit Channel</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="label4">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="halign">end</property>
-                            <property name="label" translatable="yes">Receive Channel</property>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="tx_channel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">transmit_channels</property>
-                            <property name="active">0</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="cellrenderertext6"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkComboBox" id="rx_channel">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="model">receive_channels</property>
-                            <property name="active">0</property>
-                            <property name="id_column">0</property>
-                            <child>
-                              <object class="GtkCellRendererText" id="cellrenderertext1"/>
-                              <attributes>
-                                <attribute name="text">0</attribute>
-                              </attributes>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">1</property>
-                            <property name="top_attach">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child type="label">
-                  <object class="GtkLabel" id="label6">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">MIDI Channel</property>
-                  </object>
-                </child>
-              </object>
-              <packing>
-                <property name="left_attach">1</property>
-                <property name="top_attach">0</property>
-              </packing>
-            </child>
-            <child>
               <object class="GtkFrame" id="frame3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
@@ -885,11 +888,11 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                       <object class="GtkGrid" id="grid4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">center</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
                         <property name="margin_bottom">6</property>
+                        <property name="hexpand">True</property>
                         <property name="row_spacing">6</property>
                         <property name="column_spacing">6</property>
                         <property name="row_homogeneous">True</property>
@@ -898,7 +901,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Play On</property>
+                            <property name="label" translatable="yes">Play</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -910,7 +913,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Retriggering</property>
+                            <property name="label" translatable="yes">Sequence Retrigger</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -922,7 +925,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Next Sequence</property>
+                            <property name="label" translatable="yes">Sequence Change</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -957,6 +960,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="step_length">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">step_lenghts</property>
                             <property name="active">0</property>
                             <child>
@@ -975,6 +979,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="play">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">play_modes</property>
                             <property name="active">0</property>
                             <child>
@@ -993,7 +998,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="retriggering">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="model">retriggerings</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">sequence_retrigger_modes</property>
                             <property name="active">0</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext7"/>
@@ -1011,7 +1017,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="next_sequence">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="model">nexts</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">sequence_change_modes</property>
                             <property name="active">0</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext8"/>
@@ -1029,6 +1036,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="step_on">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">step_on_modes</property>
                             <property name="active">0</property>
                             <child>
@@ -1056,7 +1064,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                 </child>
               </object>
               <packing>
-                <property name="left_attach">0</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -1076,11 +1084,11 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                       <object class="GtkGrid" id="grid5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">center</property>
                         <property name="margin_left">6</property>
                         <property name="margin_right">6</property>
                         <property name="margin_top">6</property>
                         <property name="margin_bottom">6</property>
+                        <property name="hexpand">True</property>
                         <property name="row_spacing">6</property>
                         <property name="column_spacing">6</property>
                         <property name="row_homogeneous">True</property>
@@ -1137,7 +1145,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">end</property>
-                            <property name="label" translatable="yes">Sync</property>
+                            <property name="label" translatable="yes">Synchronization</property>
                           </object>
                           <packing>
                             <property name="left_attach">0</property>
@@ -1148,7 +1156,8 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="sync">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="model">syncs</property>
+                            <property name="hexpand">True</property>
+                            <property name="model">synchronization_modes</property>
                             <property name="active">0</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext5"/>
@@ -1166,6 +1175,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkComboBox" id="gate_length">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="model">gate_lengths</property>
                             <property name="active">0</property>
                             <child>
@@ -1186,6 +1196,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="can_focus">True</property>
                             <property name="halign">start</property>
                             <property name="valign">center</property>
+                            <property name="hexpand">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -1198,6 +1209,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                             <property name="can_focus">True</property>
                             <property name="halign">start</property>
                             <property name="valign">center</property>
+                            <property name="hexpand">True</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -1208,7 +1220,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                           <object class="GtkSpinButton" id="bend_range">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="text" translatable="yes">2</property>
+                            <property name="hexpand">True</property>
                             <property name="input_purpose">number</property>
                             <property name="adjustment">bend_ranges</property>
                             <property name="value">2</property>
@@ -1231,7 +1243,7 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
                 </child>
               </object>
               <packing>
-                <property name="left_attach">1</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
               </packing>
             </child>
@@ -1246,14 +1258,9 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
           <object class="GtkStatusbar" id="statusbar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">10</property>
-            <property name="margin_right">10</property>
             <property name="margin_start">10</property>
             <property name="margin_end">10</property>
-            <property name="margin_top">6</property>
-            <property name="margin_bottom">6</property>
             <property name="orientation">vertical</property>
-            <property name="spacing">2</property>
           </object>
           <packing>
             <property name="expand">False</property>

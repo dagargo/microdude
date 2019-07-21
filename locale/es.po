@@ -1,0 +1,236 @@
+# Spanish translations for MicroDude package
+# Traducciones al español para el paquete MicroDude.
+# Copyright (C) 2019 David García Goñi
+# This file is distributed under the same license as the MicroDude package.
+# David García Goñi <dagargo@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: MicroDude 1.3.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-29 17:34+0200\n"
+"PO-Revision-Date: 2019-04-29 18:21+0200\n"
+"Last-Translator: David García Goñi <dagargo@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: microdude/resources/gui.glade:33
+msgid "MicroDude is an editor for Arturia MicroBrute"
+msgstr "MicroDude es un editor para el Microbrute de Arturia"
+
+#: microdude/resources/gui.glade:76 microdude/resources/gui.glade:615
+#: microdude/resources/gui.glade:616
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: microdude/resources/gui.glade:148
+msgid "Device"
+msgstr "Dispositivo"
+
+#: microdude/resources/gui.glade:193
+msgid "Short"
+msgstr "Corta"
+
+#: microdude/resources/gui.glade:197
+msgid "Medium"
+msgstr "Media"
+
+#: microdude/resources/gui.glade:201
+msgid "Long"
+msgstr "Larga"
+
+#: microdude/resources/gui.glade:215
+msgid "High"
+msgstr "Alta"
+
+#: microdude/resources/gui.glade:219
+msgid "Low"
+msgstr "Baja"
+
+#: microdude/resources/gui.glade:223
+msgid "Last"
+msgstr "Última"
+
+#: microdude/resources/gui.glade:237
+msgid "Hold"
+msgstr "Continua"
+
+#: microdude/resources/gui.glade:241
+msgid "Note On"
+msgstr "Al pulsar"
+
+#: microdude/resources/gui.glade:255
+msgid "Any"
+msgstr "Todos"
+
+#: microdude/resources/gui.glade:333
+msgid "At End"
+msgstr "Al fin"
+
+#: microdude/resources/gui.glade:337
+msgid "Instant Continuation"
+msgstr "Continuación instantánea"
+
+#: microdude/resources/gui.glade:341
+msgid "Instant Reset"
+msgstr "Reinicio instantáneo"
+
+#: microdude/resources/gui.glade:355
+msgid "None"
+msgstr "No"
+
+#: microdude/resources/gui.glade:359
+msgid "Reset"
+msgstr "Reinicio"
+
+#: microdude/resources/gui.glade:363
+msgid "Reset But Legato"
+msgstr "Reinicio excepto en ligado"
+
+#: microdude/resources/gui.glade:403
+msgid "Clock"
+msgstr "Reloj"
+
+#: microdude/resources/gui.glade:407
+msgid "Gate"
+msgstr "Puerta"
+
+#: microdude/resources/gui.glade:421
+msgid "External"
+msgstr "Externa"
+
+#: microdude/resources/gui.glade:425
+msgid "Internal"
+msgstr "Interna"
+
+#: microdude/resources/gui.glade:429
+msgid "Auto"
+msgstr "Automática"
+
+#: microdude/resources/gui.glade:517
+msgid "Exponential"
+msgstr "Exponencial"
+
+#: microdude/resources/gui.glade:521
+msgid "Linear"
+msgstr "Lineal"
+
+#: microdude/resources/gui.glade:525
+msgid "Logarithmic"
+msgstr "Logarítmica"
+
+#: microdude/resources/gui.glade:553 microdude/resources/gui.glade:554
+msgid "Connect"
+msgstr "Conectar"
+
+#: microdude/resources/gui.glade:577 microdude/resources/gui.glade:578
+msgid "Upload sequences"
+msgstr "Subir secuencias"
+
+#: microdude/resources/gui.glade:591 microdude/resources/gui.glade:592
+msgid "Download sequences"
+msgstr "Descargar secuencias"
+
+#: microdude/resources/gui.glade:639 microdude/resources/gui.glade:640
+msgid "About"
+msgstr "Acerca de"
+
+#: microdude/resources/gui.glade:694
+msgid "Transmit Channel"
+msgstr "Canal de transmisión"
+
+#: microdude/resources/gui.glade:706
+msgid "Receive Channel"
+msgstr "Canal de recepción"
+
+#: microdude/resources/gui.glade:760
+msgid "MIDI"
+msgstr ""
+
+#: microdude/resources/gui.glade:798
+msgid "Note Priority"
+msgstr "Prioridad de nota"
+
+#: microdude/resources/gui.glade:810
+msgid "Velocity Response"
+msgstr "Respuesta de velocidad"
+
+#: microdude/resources/gui.glade:865
+msgid "Keyboard Parameters"
+msgstr "Parámetros del teclado"
+
+#: microdude/resources/gui.glade:904
+msgid "Play"
+msgstr "Reproducción"
+
+#: microdude/resources/gui.glade:916
+msgid "Sequence Retrigger"
+msgstr "Redisparo de secuencia"
+
+#: microdude/resources/gui.glade:928
+msgid "Sequence Change"
+msgstr "Cambio de secuencia"
+
+#: microdude/resources/gui.glade:940
+msgid "Step On"
+msgstr "Siguiente paso"
+
+#: microdude/resources/gui.glade:952
+msgid "Step Length"
+msgstr "Duración del paso"
+
+#: microdude/resources/gui.glade:1062
+msgid "Sequencer Control"
+msgstr "Control del secuenciador"
+
+#: microdude/resources/gui.glade:1100
+msgid "LFO Key Retrigger"
+msgstr "Redisparo del LFO"
+
+#: microdude/resources/gui.glade:1112
+msgid "Envelope Legato"
+msgstr "Envolvente ligada"
+
+#: microdude/resources/gui.glade:1124
+msgid "Bend Range"
+msgstr "Inflexión de tono"
+
+#: microdude/resources/gui.glade:1136
+msgid "Gate Length"
+msgstr "Logintud de la puerta"
+
+#: microdude/resources/gui.glade:1148
+msgid "Synchronization"
+msgstr "Sincronización"
+
+#: microdude/resources/gui.glade:1241
+msgid "Module Parameters"
+msgstr "Parámetros del módulo"
+
+#: microdude/editor.py:46
+msgid "sequences"
+msgstr "secuencias"
+
+#: microdude/editor.py:190
+msgid "MicroBrute sequence files"
+msgstr "Archivos de secuencia de MicroBrute"
+
+#: microdude/editor.py:194
+msgid "Any files"
+msgstr "Todos los archivos"
+
+#: microdude/editor.py:203
+msgid "Connected (firmware version {:s})"
+msgstr "Conectado (versión de firmware {:s})"
+
+#: microdude/editor.py:207
+msgid "Not connected"
+msgstr "No conectado"
+
+#: microdude/editor.py:281
+msgid "Error in sequence \"{:s}\""
+msgstr "Error en la secuencia \"{:s}\""

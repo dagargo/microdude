@@ -19,33 +19,38 @@
 
 """MicroDude user interface"""
 
+from gettext import gettext as _
+import gettext
+import locale
+import getopt
+import sys
+from microdude import utils
+from microdude.connector import ConnectorError
+from microdude import connector
+import pkg_resources
+import logging
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 from gi.repository import GLib
-import logging
-import pkg_resources
-from microdude import connector
-from microdude.connector import ConnectorError
-from microdude import utils
-import sys
-import getopt
+
 
 PKG_NAME = 'microdude'
+locale.textdomain(PKG_NAME)
+gettext.textdomain(PKG_NAME)
 
 glade_file = pkg_resources.resource_filename(__name__, 'resources/gui.glade')
 version = pkg_resources.get_distribution(PKG_NAME).version
 
-EXTENSION = 'mbseq'
-DEF_FILENAME = 'sequences.' + EXTENSION
-CONN_MSG = 'Connected (firmware version {:s})'
-ERROR_IN_SEQ = 'Error in sequence "{:s}"'
+EXTENSION = '.mbseq'
+DEF_FILENAME = _('sequences') + EXTENSION
 
 log_level = logging.ERROR
 
 
 def print_help():
     print('Usage: {:s} [-v]'.format(PKG_NAME))
+
 
 try:
     opts, args = getopt.getopt(sys.argv[1:], "hv")
@@ -182,11 +187,11 @@ class Editor(object):
         self.settings_dialog = SettingsDialog(self)
 
         self.filter_mbseq = Gtk.FileFilter()
-        self.filter_mbseq.set_name('MicroBrute sequence files')
-        self.filter_mbseq.add_pattern('*.' + EXTENSION)
+        self.filter_mbseq.set_name(_('MicroBrute sequence files'))
+        self.filter_mbseq.add_pattern('*' + EXTENSION)
 
         self.filter_any = Gtk.FileFilter()
-        self.filter_any.set_name('Any files')
+        self.filter_any.set_name(_('Any files'))
         self.filter_any.add_pattern('*')
 
         self.main_window.present()
@@ -195,10 +200,11 @@ class Editor(object):
         device = self.config[utils.DEVICE]
         self.connector.connect(device)
         if self.connector.connected():
-            conn_msg = CONN_MSG.format(self.connector.sw_version)
+            conn_msg = _('Connected (firmware version {:s})').format(
+                self.connector.sw_version)
             self.set_status_msg(conn_msg)
         else:
-            self.set_status_msg('Not connected')
+            self.set_status_msg(_('Not connected'))
 
     def ui_reconnect(self):
         self.connector.disconnect()
@@ -272,7 +278,7 @@ class Editor(object):
                     try:
                         self.connector.set_sequence(seq)
                     except ValueError as e:
-                        desc = ERROR_IN_SEQ.format(seq)
+                        desc = _('Error in sequence "{:s}"').format(seq)
                         self.show_error(e, desc=desc)
             except ConnectorError as e:
                 self.show_error(e)
