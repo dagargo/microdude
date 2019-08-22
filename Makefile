@@ -38,6 +38,9 @@ uninstall:
 update_pot:
 	xgettext -L Glade microdude/resources/gui.glade --omit-header -o locale/messages.pot
 	xgettext -L Python microdude/editor.py --keyword=_ -j -o locale/messages.pot
+	for po in locale/*.po; do \
+	  msgmerge -U $$po locale/messages.pot; \
+  done
 
 test:
 	python3 setup.py test

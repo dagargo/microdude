@@ -19,6 +19,7 @@
 
 """MicroDude user interface"""
 
+import time
 from gettext import gettext as _
 import gettext
 import locale
@@ -98,7 +99,7 @@ class SettingsDialog(object):
                 logger.debug('Port {:s} is active'.format(port))
                 self.devices.set_active(i)
             i += 1
-        self.dialog.show()
+        self.dialog.run()
 
     def save(self):
         active = self.devices.get_active()
@@ -110,12 +111,48 @@ class SettingsDialog(object):
         self.dialog.hide()
 
 
+class CalibrationAssistant(object):
+
+    def __init__(self, connector):
+        self.connector = connector
+        self.calibration_assistant = builder.get_object(
+            'calibration_assistant')
+        self.calibration_assistant.connect(
+            'close', lambda user_data: self.close())
+        self.calibration_assistant.connect(
+            'cancel', lambda user_data: self.cancel())
+        self.calibration_assistant.connect(
+            'escape', lambda user_data: self.cancel())
+        self.calibration_assistant.connect(
+            'prepare', lambda widget, user_data: self.prepare(user_data))
+
+    def show(self):
+        self.calibration_assistant.show()
+
+    def close(self):
+        self.calibration_assistant.hide()
+
+    def prepare(self, user_data):
+        page = self.calibration_assistant.get_current_page()
+        if page == 2:
+            self.connector.set_parameter(connector.CALIB_PB_CENTER, 0)
+        elif page == 3:
+            self.connector.set_parameter(connector.CALIB_BOTH_BOTTOM, 0)
+        elif page == 4:
+            self.connector.set_parameter(connector.CALIB_BOTH_TOP, 0)
+            time.sleep(1)
+            self.connector.set_parameter(connector.CALIB_END, 0)
+
+    def cancel(self):
+        if self.calibration_assistant.get_current_page() == 0:
+            self.calibration_assistant.hide()
+
+
 class Editor(object):
     """MicroDude user interface"""
 
     def __init__(self):
         self.connector = connector.Connector()
-        self.main_window = None
         self.config = utils.read_config()
 
     def init_ui(self):
@@ -139,6 +176,9 @@ class Editor(object):
         self.preferences_button = builder.get_object('preferences_button')
         self.preferences_button.connect(
             'clicked', lambda widget: self.settings_dialog.show())
+        self.calibration_button = builder.get_object('calibration_button')
+        self.calibration_button.connect(
+            'clicked', lambda widget: self.calibration_assistant.show())
         self.main_container = builder.get_object('main_container')
         self.note_priority = builder.get_object('note_priority')
         self.vel_response = builder.get_object('vel_response')
@@ -185,6 +225,7 @@ class Editor(object):
         self.statusbar = builder.get_object('statusbar')
         self.context_id = self.statusbar.get_context_id(PKG_NAME)
         self.settings_dialog = SettingsDialog(self)
+        self.calibration_assistant = CalibrationAssistant(self.connector)
 
         self.filter_mbseq = Gtk.FileFilter()
         self.filter_mbseq.set_name(_('MicroBrute sequence files'))
@@ -253,6 +294,7 @@ class Editor(object):
         self.main_container.set_sensitive(self.connector.connected())
         self.save_button.set_sensitive(self.connector.connected())
         self.open_button.set_sensitive(self.connector.connected())
+        self.calibration_button.set_sensitive(self.connector.connected())
 
     def show_open(self):
         dialog = Gtk.FileChooserDialog('Open', self.main_window,
@@ -314,9 +356,8 @@ class Editor(object):
 
     def set_status_msg(self, msg):
         logger.info(msg)
-        if self.main_window:
-            self.statusbar.pop(self.context_id)
-            self.statusbar.push(self.context_id, msg)
+        self.statusbar.pop(self.context_id)
+        self.statusbar.push(self.context_id, msg)
 
     def set_combo_value(self, combo, value):
         model = combo.get_model()

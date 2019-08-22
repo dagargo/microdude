@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 17:34+0200\n"
+"POT-Creation-Date: 2019-08-22 17:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,219 +17,271 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: microdude/resources/gui.glade:33
-msgid "MicroDude is an editor for Arturia MicroBrute"
-msgstr ""
-
-#: microdude/resources/gui.glade:76 microdude/resources/gui.glade:615
-#: microdude/resources/gui.glade:616
-msgid "Preferences"
-msgstr ""
-
-#: microdude/resources/gui.glade:148
-msgid "Device"
-msgstr ""
-
-#: microdude/resources/gui.glade:193
+#: microdude/resources/gui.glade:49
 msgid "Short"
 msgstr ""
 
-#: microdude/resources/gui.glade:197
+#: microdude/resources/gui.glade:53
 msgid "Medium"
 msgstr ""
 
-#: microdude/resources/gui.glade:201
+#: microdude/resources/gui.glade:57
 msgid "Long"
 msgstr ""
 
-#: microdude/resources/gui.glade:215
+#: microdude/resources/gui.glade:71
 msgid "High"
 msgstr ""
 
-#: microdude/resources/gui.glade:219
+#: microdude/resources/gui.glade:75
 msgid "Low"
 msgstr ""
 
-#: microdude/resources/gui.glade:223
+#: microdude/resources/gui.glade:79
 msgid "Last"
 msgstr ""
 
-#: microdude/resources/gui.glade:237
+#: microdude/resources/gui.glade:93
 msgid "Hold"
 msgstr ""
 
-#: microdude/resources/gui.glade:241
+#: microdude/resources/gui.glade:97
 msgid "Note On"
 msgstr ""
 
-#: microdude/resources/gui.glade:255
+#: microdude/resources/gui.glade:111
 msgid "Any"
 msgstr ""
 
-#: microdude/resources/gui.glade:333
+#: microdude/resources/gui.glade:189
 msgid "At End"
 msgstr ""
 
-#: microdude/resources/gui.glade:337
+#: microdude/resources/gui.glade:193
 msgid "Instant Continuation"
 msgstr ""
 
-#: microdude/resources/gui.glade:341
+#: microdude/resources/gui.glade:197
 msgid "Instant Reset"
 msgstr ""
 
-#: microdude/resources/gui.glade:355
+#: microdude/resources/gui.glade:211
 msgid "None"
 msgstr ""
 
-#: microdude/resources/gui.glade:359
+#: microdude/resources/gui.glade:215
 msgid "Reset"
 msgstr ""
 
-#: microdude/resources/gui.glade:363
+#: microdude/resources/gui.glade:219
 msgid "Reset But Legato"
 msgstr ""
 
-#: microdude/resources/gui.glade:403
+#: microdude/resources/gui.glade:259
 msgid "Clock"
 msgstr ""
 
-#: microdude/resources/gui.glade:407
+#: microdude/resources/gui.glade:263
 msgid "Gate"
 msgstr ""
 
-#: microdude/resources/gui.glade:421
+#: microdude/resources/gui.glade:277
 msgid "External"
 msgstr ""
 
-#: microdude/resources/gui.glade:425
+#: microdude/resources/gui.glade:281
 msgid "Internal"
 msgstr ""
 
-#: microdude/resources/gui.glade:429
+#: microdude/resources/gui.glade:285
 msgid "Auto"
 msgstr ""
 
-#: microdude/resources/gui.glade:517
+#: microdude/resources/gui.glade:373
 msgid "Exponential"
 msgstr ""
 
-#: microdude/resources/gui.glade:521
+#: microdude/resources/gui.glade:377
 msgid "Linear"
 msgstr ""
 
-#: microdude/resources/gui.glade:525
+#: microdude/resources/gui.glade:381
 msgid "Logarithmic"
 msgstr ""
 
-#: microdude/resources/gui.glade:553 microdude/resources/gui.glade:554
+#: microdude/resources/gui.glade:409 microdude/resources/gui.glade:410
 msgid "Connect"
 msgstr ""
 
-#: microdude/resources/gui.glade:577 microdude/resources/gui.glade:578
+#: microdude/resources/gui.glade:433 microdude/resources/gui.glade:434
 msgid "Upload sequences"
 msgstr ""
 
-#: microdude/resources/gui.glade:591 microdude/resources/gui.glade:592
+#: microdude/resources/gui.glade:447 microdude/resources/gui.glade:448
 msgid "Download sequences"
 msgstr ""
 
-#: microdude/resources/gui.glade:639 microdude/resources/gui.glade:640
+#: microdude/resources/gui.glade:471 microdude/resources/gui.glade:472
+#: microdude/resources/gui.glade:1283
+msgid "Preferences"
+msgstr ""
+
+#: microdude/resources/gui.glade:485 microdude/resources/gui.glade:486
+msgid "Calibration"
+msgstr ""
+
+#: microdude/resources/gui.glade:509 microdude/resources/gui.glade:510
 msgid "About"
 msgstr ""
 
-#: microdude/resources/gui.glade:694
+#: microdude/resources/gui.glade:564
 msgid "Transmit Channel"
 msgstr ""
 
-#: microdude/resources/gui.glade:706
+#: microdude/resources/gui.glade:576
 msgid "Receive Channel"
 msgstr ""
 
-#: microdude/resources/gui.glade:760
+#: microdude/resources/gui.glade:630
 msgid "MIDI"
 msgstr ""
 
-#: microdude/resources/gui.glade:798
+#: microdude/resources/gui.glade:668
 msgid "Note Priority"
 msgstr ""
 
-#: microdude/resources/gui.glade:810
+#: microdude/resources/gui.glade:680
 msgid "Velocity Response"
 msgstr ""
 
-#: microdude/resources/gui.glade:865
+#: microdude/resources/gui.glade:735
 msgid "Keyboard Parameters"
 msgstr ""
 
-#: microdude/resources/gui.glade:904
+#: microdude/resources/gui.glade:774
 msgid "Play"
 msgstr ""
 
-#: microdude/resources/gui.glade:916
+#: microdude/resources/gui.glade:786
 msgid "Sequence Retrigger"
 msgstr ""
 
-#: microdude/resources/gui.glade:928
+#: microdude/resources/gui.glade:798
 msgid "Sequence Change"
 msgstr ""
 
-#: microdude/resources/gui.glade:940
+#: microdude/resources/gui.glade:810
 msgid "Step On"
 msgstr ""
 
-#: microdude/resources/gui.glade:952
+#: microdude/resources/gui.glade:822
 msgid "Step Length"
 msgstr ""
 
-#: microdude/resources/gui.glade:1062
+#: microdude/resources/gui.glade:932
 msgid "Sequencer Control"
 msgstr ""
 
-#: microdude/resources/gui.glade:1100
+#: microdude/resources/gui.glade:970
 msgid "LFO Key Retrigger"
 msgstr ""
 
-#: microdude/resources/gui.glade:1112
+#: microdude/resources/gui.glade:982
 msgid "Envelope Legato"
 msgstr ""
 
-#: microdude/resources/gui.glade:1124
+#: microdude/resources/gui.glade:994
 msgid "Bend Range"
 msgstr ""
 
-#: microdude/resources/gui.glade:1136
+#: microdude/resources/gui.glade:1006
 msgid "Gate Length"
 msgstr ""
 
-#: microdude/resources/gui.glade:1148
+#: microdude/resources/gui.glade:1018
 msgid "Synchronization"
 msgstr ""
 
-#: microdude/resources/gui.glade:1241
+#: microdude/resources/gui.glade:1111
 msgid "Module Parameters"
 msgstr ""
 
-#: microdude/editor.py:46
+#: microdude/resources/gui.glade:1152
+msgid "MicroDude is an editor for Arturia MicroBrute"
+msgstr ""
+
+#: microdude/resources/gui.glade:1183
+msgid "Calibration Assistant"
+msgstr ""
+
+#: microdude/resources/gui.glade:1197
+msgid ""
+"This procedure calibrates the pitch bend an modulation wheels.\n"
+"This is very experimental, so do it under your own risk.\n"
+"Once started, it can not be stopped.\n"
+msgstr ""
+
+#: microdude/resources/gui.glade:1204
+msgid "Start"
+msgstr ""
+
+#: microdude/resources/gui.glade:1217
+msgid ""
+"Let the bend wheel rest at the neutral position and click on the next button"
+msgstr ""
+
+#: microdude/resources/gui.glade:1222
+msgid "Step 1"
+msgstr ""
+
+#: microdude/resources/gui.glade:1235
+msgid "While setting both wheels at the bottom click on the next button"
+msgstr ""
+
+#: microdude/resources/gui.glade:1240
+msgid "Step 2"
+msgstr ""
+
+#: microdude/resources/gui.glade:1253
+msgid "While setting both wheels at the top click on the next button"
+msgstr ""
+
+#: microdude/resources/gui.glade:1258
+msgid "Step 3"
+msgstr ""
+
+#: microdude/resources/gui.glade:1271
+msgid "Calibration completed"
+msgstr ""
+
+#: microdude/resources/gui.glade:1275
+msgid "End"
+msgstr ""
+
+#: microdude/resources/gui.glade:1356
+msgid "Device"
+msgstr ""
+
+#: microdude/editor.py:47
 msgid "sequences"
 msgstr ""
 
-#: microdude/editor.py:190
+#: microdude/editor.py:231
 msgid "MicroBrute sequence files"
 msgstr ""
 
-#: microdude/editor.py:194
+#: microdude/editor.py:235
 msgid "Any files"
 msgstr ""
 
-#: microdude/editor.py:203
+#: microdude/editor.py:244
 msgid "Connected (firmware version {:s})"
 msgstr ""
 
-#: microdude/editor.py:207
+#: microdude/editor.py:248
 msgid "Not connected"
 msgstr ""
 
-#: microdude/editor.py:281
+#: microdude/editor.py:323
 msgid "Error in sequence \"{:s}\""
 msgstr ""
