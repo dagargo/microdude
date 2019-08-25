@@ -178,7 +178,7 @@ class Connector(object):
         return response[8]
 
     def create_get_parameter_message(self, param):
-        """Return an array representing the sysex messages to get the given parameter in Arturia's format."""
+        """Return an array representing the SysEx message to get the given parameter in Arturia's format."""
         message = []
         message.extend(TX_MSG)
         message.append(self.seq)
@@ -193,7 +193,7 @@ class Connector(object):
         return True
 
     def create_set_parameter_message(self, param, value):
-        """Return an array representing the sysex messages to set the given parameter and value in Arturia's format."""
+        """Return an array representing the SysEx message to set the given parameter and value in Arturia's format."""
         msg = []
         msg.extend(TX_MSG)
         msg.append(self.seq)
