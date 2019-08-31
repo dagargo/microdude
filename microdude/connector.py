@@ -162,9 +162,6 @@ RECEIVE_RETRIES = 50
 RETRY_SLEEP_TIME = 0.1
 
 SEQ_FILE_ERROR = 'Error in sequences file'
-HANDSHAKE_MSG = 'Handshake ok. Version {:s}.'
-SENDING_MSG = 'Sending message {:s}...'
-RECEIVING_MSG = 'Receiving message {:s}...'
 
 
 def get_ports():
@@ -199,22 +196,22 @@ class Connector(object):
 
     def connect(self, device):
         """Connect to the MicroBrute."""
-        logger.debug('Connecting to {:s}...'.format(device))
+        logger.debug('Connecting to %s...', device)
         try:
             self.port = mido.open_ioport(device)
-            logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
+            logger.debug('Mido backend: %s', str(mido.backend))
             logger.debug('Handshaking...')
             self.tx_message(INQUIRY_REQ)
             response = self.rx_message()
             if response[0:11] == INQUIRY_RES_WO_VERSION:
                 self.sw_version = '.'.join([str(i) for i in response[11:15]])
-                logger.debug(HANDSHAKE_MSG.format(self.sw_version))
+                logger.debug('Handshake ok. Version %s.', self.sw_version)
                 self.set_channel(self.get_parameter(RX_CHANNEL))
             else:
                 logger.debug('Bad handshake. Disconnecting...')
                 self.disconnect()
         except IOError as e:
-            logger.error('IOError while connecting: "{:s}"'.format(str(e)))
+            logger.error('IOError while connecting: "%s"', str(e))
             self.disconnect()
 
     def set_channel(self, channel):
@@ -296,9 +293,9 @@ class Connector(object):
             self.seq_inc()
         else:
             msgs = self.get_ctl_msgs(param, value)
-            print(msgs)
             try:
                 for m in msgs:
+                    logger.debug('Sending message %s', str(m))
                     self.port.send(m)
             except IOError:
                 self.disconnect()
@@ -319,7 +316,7 @@ class Connector(object):
 
     def tx_message(self, data):
         msg = mido.Message('sysex', data=data)
-        logger.debug(SENDING_MSG.format(self.get_hex_data(data)))
+        logger.debug('Sending message %s...', self.get_hex_data(data))
         try:
             self.port.send(msg)
         except IOError:
@@ -331,8 +328,8 @@ class Connector(object):
             for i in range(0, RECEIVE_RETRIES):
                 for msg in self.port.iter_pending():
                     if msg.type == 'sysex':
-                        logger.debug('Receiving message {:s}...'.format(
-                            self.get_hex_data(msg.data)))
+                        logger.debug('Receiving message %s...',
+                            self.get_hex_data(msg.data))
                         data_array = []
                         data_array.extend(msg.data)
                         return data_array
