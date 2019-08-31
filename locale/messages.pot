@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 17:09+0200\n"
+"POT-Creation-Date: 2019-08-25 13:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,26 +262,30 @@ msgstr ""
 msgid "Device"
 msgstr ""
 
+#: microdude/resources/gui.glade:1387
+msgid "Persistent Changes"
+msgstr ""
+
 #: microdude/editor.py:47
 msgid "sequences"
 msgstr ""
 
-#: microdude/editor.py:231
+#: microdude/editor.py:236
 msgid "MicroBrute sequence files"
 msgstr ""
 
-#: microdude/editor.py:235
+#: microdude/editor.py:240
 msgid "Any files"
 msgstr ""
 
-#: microdude/editor.py:244
+#: microdude/editor.py:249
 msgid "Connected (firmware version {:s})"
 msgstr ""
 
-#: microdude/editor.py:248
+#: microdude/editor.py:253
 msgid "Not connected"
 msgstr ""
 
-#: microdude/editor.py:323
+#: microdude/editor.py:328
 msgid "Error in sequence \"{:s}\""
 msgstr ""

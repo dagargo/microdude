@@ -23,6 +23,7 @@ import mido
 import time
 import logging
 import importlib.util
+from mido import Message
 
 logger = logging.getLogger(__name__)
 
@@ -34,8 +35,8 @@ else:
 
 mido.set_backend(backend)
 
-INIT_MSG = [0x7E, 0x7F, 0x6, 0x1]
-MICROBRUTE_MSG_WO_VERSION = [0x7E, 0x1, 0x6,
+INQUIRY_REQ = [0x7E, 0x7F, 0x6, 0x1]
+INQUIRY_RES_WO_VERSION = [0x7E, 0x1, 0x6,
                              0x2, 0x0, 0x20, 0x6B, 0x4, 0x0, 0x2, 0x1]
 TX_MSG = [0x0, 0x20, 0x6B, 0x5, 0x1]
 
@@ -58,6 +59,105 @@ CALIB_BOTH_BOTTOM = 0x22
 CALIB_BOTH_TOP = 0x23
 CALIB_END = 0x24
 
+CTL_RX_CHANNEL = 102
+CTL_TX_CHANNEL = 103
+CTL_NOTE_PRIORITY = 111
+CTL_ENVELOPE_LEGATO = 109
+CTL_LFO_KEY_RETRIGGER = 110
+CTL_VEL_RESPONSE = 112
+CTL_STEP_ON = 114
+CTL_PLAY_ON = 105
+CTL_NEXT_SEQUENCE = 106
+CTL_RETRIGGERING = 104
+CTL_GATE_LENGTH = 113
+CTL_STEP_LENGTH = 107
+CTL_SYNC = 108
+
+def map_plus_one(value):
+    return value + 1
+
+def map_proportional_3(value):
+    return value * 42
+
+def map_proportional_2(value):
+    return value * 64
+
+def map_plus_1_proportional_4(value):
+    return (value - 1) * 30
+
+def map_step_length(value):
+    if value == 4:
+        return 0
+    elif value == 8:
+        return 30
+    elif value == 16:
+        return 60
+    elif value == 32:
+        return 90
+
+def map_special(value):
+    if value == 0:
+        return 0
+    elif value == 1:
+        return 43
+    elif value == 2:
+        return 87
+
+PARAM_CTL_MAPPING = {
+    RX_CHANNEL: {
+        'ctl': CTL_RX_CHANNEL,
+        'map': map_plus_one
+    },
+    TX_CHANNEL: {
+        'ctl': CTL_TX_CHANNEL,
+        'map': map_plus_one
+    },
+    NOTE_PRIORITY: {
+        'ctl': CTL_NOTE_PRIORITY,
+        'map': map_special
+    },
+    ENVELOPE_LEGATO: {
+        'ctl': CTL_ENVELOPE_LEGATO,
+        'map': map_proportional_2
+    },
+    LFO_KEY_RETRIGGER: {
+        'ctl': CTL_LFO_KEY_RETRIGGER,
+        'map': map_proportional_2
+    },
+    VEL_RESPONSE: {
+        'ctl': CTL_VEL_RESPONSE,
+        'map': map_special
+    },
+    STEP_ON: {
+        'ctl': CTL_STEP_ON,
+        'map': map_proportional_2
+    },
+    PLAY_ON: {
+        'ctl': CTL_PLAY_ON,
+        'map': map_proportional_2
+    },
+    NEXT_SEQUENCE: {
+        'ctl': CTL_NEXT_SEQUENCE,
+        'map': map_special
+    },
+    RETRIGGERING: {
+        'ctl': CTL_RETRIGGERING,
+        'map': map_special
+    },
+    GATE_LENGTH: {
+        'ctl': CTL_GATE_LENGTH,
+        'map': map_proportional_3
+    },
+    STEP_LENGTH: {
+        'ctl': CTL_STEP_LENGTH,
+        'map': map_step_length
+    },
+    SYNC: {
+        'ctl': CTL_SYNC,
+        'map': map_special
+    }
+}
+
 RECEIVE_RETRIES = 50
 RETRY_SLEEP_TIME = 0.1
 
@@ -69,7 +169,6 @@ RECEIVING_MSG = 'Receiving message {:s}...'
 
 def get_ports():
     return mido.get_ioport_names()
-
 
 class Connector(object):
     """MicroDude connector"""
@@ -105,17 +204,21 @@ class Connector(object):
             self.port = mido.open_ioport(device)
             logger.debug('Mido backend: {:s}'.format(str(mido.backend)))
             logger.debug('Handshaking...')
-            self.tx_message(INIT_MSG)
+            self.tx_message(INQUIRY_REQ)
             response = self.rx_message()
-            if response[0:11] == MICROBRUTE_MSG_WO_VERSION:
+            if response[0:11] == INQUIRY_RES_WO_VERSION:
                 self.sw_version = '.'.join([str(i) for i in response[11:15]])
                 logger.debug(HANDSHAKE_MSG.format(self.sw_version))
+                self.set_channel(self.get_parameter(RX_CHANNEL))
             else:
                 logger.debug('Bad handshake. Disconnecting...')
                 self.disconnect()
         except IOError as e:
             logger.error('IOError while connecting: "{:s}"'.format(str(e)))
             self.disconnect()
+
+    def set_channel(self, channel):
+        self.channel = channel if channel < 16 else 0
 
     def set_sequence(self, sequence):
         """Set the sequence in Arturia's format in the MicroBrute."""
@@ -186,10 +289,22 @@ class Connector(object):
         message.append(param + 1)
         return message
 
-    def set_parameter(self, param, value):
-        msg = self.create_set_parameter_message(param, value)
-        self.tx_message(msg)
-        self.seq_inc()
+    def set_parameter(self, param, value, persistent=True):
+        if persistent:
+            msg = self.create_set_parameter_message(param, value)
+            self.tx_message(msg)
+            self.seq_inc()
+        else:
+            msgs = self.get_ctl_msgs(param, value)
+            print(msgs)
+            try:
+                for m in msgs:
+                    self.port.send(m)
+            except IOError:
+                self.disconnect()
+                raise ConnectorError()
+        if param == RX_CHANNEL:
+            self.set_channel(value)
         return True
 
     def create_set_parameter_message(self, param, value):
@@ -277,6 +392,23 @@ class Connector(object):
         msg.append(0x20)
         return msg
 
+    def get_ctl_msgs(self, param, value):
+        if param == BEND_RANGE:
+            return [
+                Message('control_change', channel=self.channel,
+                        control=101, value=0),
+                Message('control_change', channel=self.channel,
+                        control=100, value=0),
+                Message('control_change', channel=self.channel,
+                        control=6, value=value),
+                Message('control_change', channel=self.channel,
+                        control=38, value=0)
+            ]
+        else:
+            ctl = PARAM_CTL_MAPPING[param]['ctl']
+            val = PARAM_CTL_MAPPING[param]['map'](value)
+            return [Message('control_change', channel=self.channel,
+                          control=ctl, value=val)]
 
 class ConnectorError(IOError):
     """Raise when there is a Connector error"""

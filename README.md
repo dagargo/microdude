@@ -9,6 +9,7 @@ Also, it is possible to use MicroDude from other Python programs.
 ## Additional features
 
 - Pitch and modulation wheels calibration
+- Choose between persistent changes (SysEx) or non persistent (MIDI controllers)
 
 ## Installation
 

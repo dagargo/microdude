@@ -33,7 +33,8 @@ READ_ERROR_MSG = 'Config file could not be read: {:s}. Using default configurati
 OPEN_ERROR_MSG = 'Config file could not be opened: {:s}.'
 CREATE_ERROR_MSG = 'Config file could not be created {:s}.'
 DEVICE = 'device'
-DEFAULT_CONFIG = {DEVICE: ''}
+PERSISTENT = 'persistent'
+DEFAULT_CONFIG = {DEVICE: '', PERSISTENT: True}
 
 CONFIG_DIR = expanduser('~') + '/.' + APP_NAME
 CONFIG_FILE = CONFIG_DIR + '/config'
@@ -66,6 +67,8 @@ def read_config():
     else:
         try:
             config = json.loads(file.read())
+            if config.get(PERSISTENT) == None:
+                config[PERSISTENT] = True
         except (IOError, ValueError) as e:
             logger.error(READ_ERROR_MSG.format(str(e)))
         else:

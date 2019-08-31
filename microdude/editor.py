@@ -83,6 +83,7 @@ class SettingsDialog(object):
         self.cancel = builder.get_object('settings_cancel_button')
         self.devices = builder.get_object('device_combo')
         self.device_liststore = builder.get_object('device_liststore')
+        self.persistent = builder.get_object('persistent_changes')
         self.dialog.set_transient_for(microdude.main_window)
         self.dialog.connect('delete-event', lambda widget,
                             event: widget.hide() or True)
@@ -95,16 +96,20 @@ class SettingsDialog(object):
         for port in connector.get_ports():
             logger.debug('Adding port {:s}...'.format(port))
             self.device_liststore.append([port])
-            if self.microdude.config[utils.DEVICE] == port:
+            if self.microdude.config.get(utils.DEVICE) == port:
                 logger.debug('Port {:s} is active'.format(port))
                 self.devices.set_active(i)
             i += 1
+        persistent = self.microdude.config.get(utils.PERSISTENT)
+        self.persistent.set_state(persistent)
+        self.persistent.set_active(persistent)
         self.dialog.run()
 
     def save(self):
         active = self.devices.get_active()
         device = self.device_liststore[active][0]
         self.microdude.config[utils.DEVICE] = device
+        self.microdude.config[utils.PERSISTENT] = self.persistent.get_active()
         logger.debug('Configuration: {:s}'.format(str(self.microdude.config)))
         utils.write_config(self.microdude.config)
         self.microdude.ui_reconnect()
@@ -387,7 +392,8 @@ class Editor(object):
     def set_parameter_from_interface(self, param, value):
         if not self.configuring:
             try:
-                value = self.connector.set_parameter(param, value)
+                value = self.connector.set_parameter(
+                    param, value, self.config[utils.PERSISTENT])
             except ConnectorError as e:
                 value = False
                 self.show_error(e)

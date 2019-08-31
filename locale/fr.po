@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroDude 1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 17:02+0200\n"
+"POT-Creation-Date: 2019-08-25 13:49+0200\n"
 "PO-Revision-Date: 2019-05-02 11:26+0200\n"
 "Last-Translator: Olivier Humbert <trebmuh@tuxfamily.org>\n"
 "Language-Team: French\n"
@@ -263,26 +263,30 @@ msgstr ""
 msgid "Device"
 msgstr "Périphérique"
 
+#: microdude/resources/gui.glade:1387
+msgid "Persistent Changes"
+msgstr ""
+
 #: microdude/editor.py:47
 msgid "sequences"
 msgstr "séquences"
 
-#: microdude/editor.py:231
+#: microdude/editor.py:236
 msgid "MicroBrute sequence files"
 msgstr "Fichier de séquence MicroBrute"
 
-#: microdude/editor.py:235
+#: microdude/editor.py:240
 msgid "Any files"
 msgstr "Tous les fichiers"
 
-#: microdude/editor.py:244
+#: microdude/editor.py:249
 msgid "Connected (firmware version {:s})"
 msgstr "Connecté (version du micrologiciel {:s})"
 
-#: microdude/editor.py:248
+#: microdude/editor.py:253
 msgid "Not connected"
 msgstr "Non connecté"
 
-#: microdude/editor.py:323
+#: microdude/editor.py:328
 msgid "Error in sequence \"{:s}\""
 msgstr "Erreur dans la séquence \"{:s}\""

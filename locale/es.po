@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroDude 1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 16:52+0200\n"
+"POT-Creation-Date: 2019-08-25 13:49+0200\n"
 "PO-Revision-Date: 2019-04-29 18:21+0200\n"
 "Last-Translator: David García Goñi <dagargo@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -197,7 +197,7 @@ msgstr "Inflexión de tono"
 
 #: microdude/resources/gui.glade:1006
 msgid "Gate Length"
-msgstr "Logintud de la puerta"
+msgstr "Longitud de la puerta"
 
 #: microdude/resources/gui.glade:1018
 msgid "Synchronization"
@@ -216,11 +216,13 @@ msgid "Calibration Assistant"
 msgstr ""
 
 #: microdude/resources/gui.glade:1197
-msgid "This procedure calibrates the pitch bend an modulation wheels.\n"
+msgid ""
+"This procedure calibrates the pitch bend an modulation wheels.\n"
 "This is very experimental, so do it under your own risk.\n"
 "Once started, it can not be stopped.\n"
-msgstr "Este procedimiento calibra la rueda de inflexión de tono y la rueda "
-"de modulación.\n"
+msgstr ""
+"Este procedimiento calibra la rueda de inflexión de tono y la rueda de "
+"modulación.\n"
 "Esto es muy experimental, así que hazlo bajo tu propio riesgo.\n"
 "Una vez que comience no se puede detener.\n"
 
@@ -229,10 +231,11 @@ msgid "Start"
 msgstr "Inicio"
 
 #: microdude/resources/gui.glade:1217
-msgid "Let the bend wheel rest at the neutral position and click on the "
-"next button"
-msgstr "Deja la rueda de inflexión de tono en la posición neutral y haz clic "
-"en el botón de siguiente"
+msgid ""
+"Let the bend wheel rest at the neutral position and click on the next button"
+msgstr ""
+"Deja la rueda de inflexión de tono en la posición neutral y haz clic en el "
+"botón de siguiente"
 
 #: microdude/resources/gui.glade:1222
 msgid "Step 1"
@@ -266,26 +269,31 @@ msgstr "Al fin"
 msgid "Device"
 msgstr "Dispositivo"
 
+#: microdude/resources/gui.glade:1387
+#, fuzzy
+msgid "Persistent Changes"
+msgstr "Cambios Persistentes"
+
 #: microdude/editor.py:47
 msgid "sequences"
 msgstr "secuencias"
 
-#: microdude/editor.py:231
+#: microdude/editor.py:236
 msgid "MicroBrute sequence files"
 msgstr "Archivos de secuencia de MicroBrute"
 
-#: microdude/editor.py:235
+#: microdude/editor.py:240
 msgid "Any files"
 msgstr "Todos los archivos"
 
-#: microdude/editor.py:244
+#: microdude/editor.py:249
 msgid "Connected (firmware version {:s})"
 msgstr "Conectado (versión de firmware {:s})"
 
-#: microdude/editor.py:248
+#: microdude/editor.py:253
 msgid "Not connected"
 msgstr "No conectado"
 
-#: microdude/editor.py:323
+#: microdude/editor.py:328
 msgid "Error in sequence \"{:s}\""
 msgstr "Error en la secuencia \"{:s}\""
