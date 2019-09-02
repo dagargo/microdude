@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MicroDude 1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-25 13:49+0200\n"
-"PO-Revision-Date: 2019-05-02 11:26+0200\n"
+"PO-Revision-Date: 2019-09-02 17:41+0200\n"
 "Last-Translator: Olivier Humbert <trebmuh@tuxfamily.org>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -129,7 +129,7 @@ msgstr "Préférences"
 
 #: microdude/resources/gui.glade:485 microdude/resources/gui.glade:486
 msgid "Calibration"
-msgstr ""
+msgstr "Calibration"
 
 #: microdude/resources/gui.glade:509 microdude/resources/gui.glade:510
 msgid "About"
@@ -213,7 +213,7 @@ msgstr "MicroDude est un éditeur pour le Microbrute d'Arturia"
 
 #: microdude/resources/gui.glade:1183
 msgid "Calibration Assistant"
-msgstr ""
+msgstr "Assistant de calibration"
 
 #: microdude/resources/gui.glade:1197
 msgid ""
@@ -221,43 +221,47 @@ msgid ""
 "This is very experimental, so do it under your own risk.\n"
 "Once started, it can not be stopped.\n"
 msgstr ""
+"Cette procédure permet de calibrer les roues de pitch bend et de modulation.\n"
+"C'est très expérimental, alors faites-le à vos risques et périls.\n"
+"Une fois démarré, il ne peut pas être arrêté.\n"
 
 #: microdude/resources/gui.glade:1204
 msgid "Start"
-msgstr ""
+msgstr "Démarrer"
 
 #: microdude/resources/gui.glade:1217
 msgid ""
 "Let the bend wheel rest at the neutral position and click on the next button"
 msgstr ""
+"Laisser la roulette de bend reposer en position neutre et cliquer sur le bouton suivant"
 
 #: microdude/resources/gui.glade:1222
 msgid "Step 1"
-msgstr ""
+msgstr "Étape 1"
 
 #: microdude/resources/gui.glade:1235
 msgid "While setting both wheels at the bottom click on the next button"
-msgstr ""
+msgstr "En réglant les deux roulettes en bas, cliquez sur le bouton suivant"
 
 #: microdude/resources/gui.glade:1240
 msgid "Step 2"
-msgstr ""
+msgstr "Étape 2"
 
 #: microdude/resources/gui.glade:1253
 msgid "While setting both wheels at the top click on the next button"
-msgstr ""
+msgstr "En réglant les deux roulettes en haut, cliquez sur le bouton suivant"
 
 #: microdude/resources/gui.glade:1258
 msgid "Step 3"
-msgstr ""
+msgstr "Étape 3"
 
 #: microdude/resources/gui.glade:1271
 msgid "Calibration completed"
-msgstr ""
+msgstr "Calibration complétée"
 
 #: microdude/resources/gui.glade:1275
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 #: microdude/resources/gui.glade:1356
 msgid "Device"
@@ -265,7 +269,7 @@ msgstr "Périphérique"
 
 #: microdude/resources/gui.glade:1387
 msgid "Persistent Changes"
-msgstr ""
+msgstr "Changements persistants"
 
 #: microdude/editor.py:47
 msgid "sequences"
