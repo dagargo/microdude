@@ -4,7 +4,7 @@ from distutils.core import setup
 from setuptools import find_packages
 
 setup(name='MicroDude',
-    version='1.4',
+    version='1.5',
     description='Editor for Arturia MicroBrute',
     author='David García Goñi',
     author_email='dagargo@gmail.com',
