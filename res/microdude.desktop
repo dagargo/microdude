@@ -2,6 +2,8 @@
 Version=1.0
 Name=MicroDude
 Comment=Editor for Arturia MicroBrute
+Comment[en]=Editor for Arturia MicroBrute
+Comment[es]=Editor para el Arturia MicroBrute
 Comment[fr]=Éditeur pour le MicroBrute d'Arturia
 Keywords=ud;microdude
 Exec=microdude
