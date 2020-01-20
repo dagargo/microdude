@@ -129,7 +129,7 @@ msgstr "Preferencias"
 
 #: microdude/resources/gui.glade:485 microdude/resources/gui.glade:486
 msgid "Calibration"
-msgstr ""
+msgstr "Calibración"
 
 #: microdude/resources/gui.glade:509 microdude/resources/gui.glade:510
 msgid "About"
