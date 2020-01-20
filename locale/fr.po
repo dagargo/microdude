@@ -268,7 +268,7 @@ msgid "Device"
 msgstr "Périphérique"
 
 #: microdude/resources/gui.glade:1387
-msgid "Persistent Changes"
+msgid "Persistent changes"
 msgstr "Changements persistants"
 
 #: microdude/editor.py:47

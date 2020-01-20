@@ -270,9 +270,8 @@ msgid "Device"
 msgstr "Dispositivo"
 
 #: microdude/resources/gui.glade:1387
-#, fuzzy
-msgid "Persistent Changes"
-msgstr "Cambios Persistentes"
+msgid "Persistent changes"
+msgstr "Cambios persistentes"
 
 #: microdude/editor.py:47
 msgid "sequences"
