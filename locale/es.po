@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MicroDude 1.3.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-25 13:49+0200\n"
-"PO-Revision-Date: 2019-04-29 18:21+0200\n"
+"POT-Creation-Date: 2020-01-26 15:28+0100\n"
+"PO-Revision-Date: 2020-01-26 15:11+0100\n"
 "Last-Translator: David García Goñi <dagargo@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -31,16 +31,16 @@ msgid "Long"
 msgstr "Larga"
 
 #: microdude/resources/gui.glade:71
-msgid "High"
-msgstr "Alta"
+msgid "Last"
+msgstr "Última"
 
 #: microdude/resources/gui.glade:75
 msgid "Low"
 msgstr "Baja"
 
 #: microdude/resources/gui.glade:79
-msgid "Last"
-msgstr "Última"
+msgid "High"
+msgstr "Alta"
 
 #: microdude/resources/gui.glade:93
 msgid "Hold"
@@ -59,24 +59,24 @@ msgid "At End"
 msgstr "Al fin"
 
 #: microdude/resources/gui.glade:193
-msgid "Instant Continuation"
-msgstr "Continuación instantánea"
-
-#: microdude/resources/gui.glade:197
 msgid "Instant Reset"
 msgstr "Reinicio instantáneo"
 
-#: microdude/resources/gui.glade:211
-msgid "None"
-msgstr "No"
+#: microdude/resources/gui.glade:197
+msgid "Instant Continuation"
+msgstr "Continuación instantánea"
 
-#: microdude/resources/gui.glade:215
+#: microdude/resources/gui.glade:211
 msgid "Reset"
 msgstr "Reinicio"
 
-#: microdude/resources/gui.glade:219
+#: microdude/resources/gui.glade:215
 msgid "Reset But Legato"
 msgstr "Reinicio excepto en ligado"
+
+#: microdude/resources/gui.glade:219
+msgid "None"
+msgstr "No"
 
 #: microdude/resources/gui.glade:259
 msgid "Clock"
@@ -87,135 +87,38 @@ msgid "Gate"
 msgstr "Puerta"
 
 #: microdude/resources/gui.glade:277
-msgid "External"
-msgstr "Externa"
+msgid "Auto"
+msgstr "Automática"
 
 #: microdude/resources/gui.glade:281
 msgid "Internal"
 msgstr "Interna"
 
 #: microdude/resources/gui.glade:285
-msgid "Auto"
-msgstr "Automática"
+msgid "External"
+msgstr "Externa"
 
 #: microdude/resources/gui.glade:373
-msgid "Exponential"
-msgstr "Exponencial"
-
-#: microdude/resources/gui.glade:377
 msgid "Linear"
 msgstr "Lineal"
 
-#: microdude/resources/gui.glade:381
+#: microdude/resources/gui.glade:377
 msgid "Logarithmic"
 msgstr "Logarítmica"
 
-#: microdude/resources/gui.glade:409 microdude/resources/gui.glade:410
-msgid "Connect"
-msgstr "Conectar"
+#: microdude/resources/gui.glade:381
+msgid "Exponential"
+msgstr "Exponencial"
 
-#: microdude/resources/gui.glade:433 microdude/resources/gui.glade:434
-msgid "Upload sequences"
-msgstr "Cargar secuencias"
-
-#: microdude/resources/gui.glade:447 microdude/resources/gui.glade:448
-msgid "Download sequences"
-msgstr "Descargar secuencias"
-
-#: microdude/resources/gui.glade:471 microdude/resources/gui.glade:472
-#: microdude/resources/gui.glade:1283
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: microdude/resources/gui.glade:485 microdude/resources/gui.glade:486
-msgid "Calibration"
-msgstr "Calibración"
-
-#: microdude/resources/gui.glade:509 microdude/resources/gui.glade:510
-msgid "About"
-msgstr "Acerca de"
-
-#: microdude/resources/gui.glade:564
-msgid "Transmit Channel"
-msgstr "Canal de transmisión"
-
-#: microdude/resources/gui.glade:576
-msgid "Receive Channel"
-msgstr "Canal de recepción"
-
-#: microdude/resources/gui.glade:630
-msgid "MIDI"
-msgstr ""
-
-#: microdude/resources/gui.glade:668
-msgid "Note Priority"
-msgstr "Prioridad de nota"
-
-#: microdude/resources/gui.glade:680
-msgid "Velocity Response"
-msgstr "Respuesta de velocidad"
-
-#: microdude/resources/gui.glade:735
-msgid "Keyboard Parameters"
-msgstr "Parámetros del teclado"
-
-#: microdude/resources/gui.glade:774
-msgid "Play"
-msgstr "Reproducción"
-
-#: microdude/resources/gui.glade:786
-msgid "Sequence Retrigger"
-msgstr "Redisparo de secuencia"
-
-#: microdude/resources/gui.glade:798
-msgid "Sequence Change"
-msgstr "Cambio de secuencia"
-
-#: microdude/resources/gui.glade:810
-msgid "Step On"
-msgstr "Siguiente paso"
-
-#: microdude/resources/gui.glade:822
-msgid "Step Length"
-msgstr "Duración del paso"
-
-#: microdude/resources/gui.glade:932
-msgid "Sequencer Control"
-msgstr "Control del secuenciador"
-
-#: microdude/resources/gui.glade:970
-msgid "LFO Key Retrigger"
-msgstr "Redisparo del LFO"
-
-#: microdude/resources/gui.glade:982
-msgid "Envelope Legato"
-msgstr "Envolvente ligada"
-
-#: microdude/resources/gui.glade:994
-msgid "Bend Range"
-msgstr "Inflexión de tono"
-
-#: microdude/resources/gui.glade:1006
-msgid "Gate Length"
-msgstr "Longitud de la puerta"
-
-#: microdude/resources/gui.glade:1018
-msgid "Synchronization"
-msgstr "Sincronización"
-
-#: microdude/resources/gui.glade:1111
-msgid "Module Parameters"
-msgstr "Parámetros del módulo"
-
-#: microdude/resources/gui.glade:1152
+#: microdude/resources/gui.glade:394
 msgid "MicroDude is an editor for Arturia MicroBrute"
 msgstr "MicroDude es un editor para el Microbrute de Arturia"
 
-#: microdude/resources/gui.glade:1183
-msgid "Calibration Assistant"
-msgstr ""
+#: microdude/resources/gui.glade:425
+msgid "Calibration assistant"
+msgstr "Calibración"
 
-#: microdude/resources/gui.glade:1197
+#: microdude/resources/gui.glade:439
 msgid ""
 "This procedure calibrates the pitch bend an modulation wheels.\n"
 "This is very experimental, so do it under your own risk.\n"
@@ -226,50 +129,142 @@ msgstr ""
 "Esto es muy experimental, así que hazlo bajo tu propio riesgo.\n"
 "Una vez que comience no se puede detener.\n"
 
-#: microdude/resources/gui.glade:1204
+#: microdude/resources/gui.glade:446
 msgid "Start"
 msgstr "Inicio"
 
-#: microdude/resources/gui.glade:1217
+#: microdude/resources/gui.glade:459
 msgid ""
 "Let the bend wheel rest at the neutral position and click on the next button"
 msgstr ""
 "Deja la rueda de inflexión de tono en la posición neutral y haz clic en el "
 "botón de siguiente"
 
-#: microdude/resources/gui.glade:1222
+#: microdude/resources/gui.glade:464
 msgid "Step 1"
 msgstr "Paso 1"
 
-#: microdude/resources/gui.glade:1235
+#: microdude/resources/gui.glade:477
 msgid "While setting both wheels at the bottom click on the next button"
 msgstr "Situa ambas ruedas abajo y haz clic en el botón de siguiente"
 
-#: microdude/resources/gui.glade:1240
+#: microdude/resources/gui.glade:482
 msgid "Step 2"
 msgstr "Paso 2"
 
-#: microdude/resources/gui.glade:1253
+#: microdude/resources/gui.glade:495
 msgid "While setting both wheels at the top click on the next button"
 msgstr "Situa ambas ruedas arriba y haz clic en el botón de siguiente"
 
-#: microdude/resources/gui.glade:1258
+#: microdude/resources/gui.glade:500
 msgid "Step 3"
 msgstr "Paso 3"
 
-#: microdude/resources/gui.glade:1271
+#: microdude/resources/gui.glade:513
 msgid "Calibration completed"
 msgstr "Calibración completada"
 
-#: microdude/resources/gui.glade:1275
+#: microdude/resources/gui.glade:517
 msgid "End"
 msgstr "Al fin"
 
-#: microdude/resources/gui.glade:1356
+#: microdude/resources/gui.glade:598
+msgid "Transmit Channel"
+msgstr "Canal de transmisión"
+
+#: microdude/resources/gui.glade:610
+msgid "Receive Channel"
+msgstr "Canal de recepción"
+
+#: microdude/resources/gui.glade:702
+msgid "Note Priority"
+msgstr "Prioridad de nota"
+
+#: microdude/resources/gui.glade:714
+msgid "Velocity Response"
+msgstr "Respuesta de velocidad"
+
+#: microdude/resources/gui.glade:769
+msgid "Keyboard Parameters"
+msgstr "Parámetros del teclado"
+
+#: microdude/resources/gui.glade:808
+msgid "Play"
+msgstr "Reproducción"
+
+#: microdude/resources/gui.glade:820
+msgid "Sequence Retrigger"
+msgstr "Redisparo de secuencia"
+
+#: microdude/resources/gui.glade:832
+msgid "Sequence Change"
+msgstr "Cambio de secuencia"
+
+#: microdude/resources/gui.glade:844
+msgid "Step On"
+msgstr "Siguiente paso"
+
+#: microdude/resources/gui.glade:856
+msgid "Step Length"
+msgstr "Duración del paso"
+
+#: microdude/resources/gui.glade:966
+msgid "Sequencer Control"
+msgstr "Control del secuenciador"
+
+#: microdude/resources/gui.glade:1004
+msgid "LFO Key Retrigger"
+msgstr "Redisparo del LFO"
+
+#: microdude/resources/gui.glade:1016
+msgid "Envelope Legato"
+msgstr "Envolvente ligada"
+
+#: microdude/resources/gui.glade:1028
+msgid "Bend Range"
+msgstr "Inflexión de tono"
+
+#: microdude/resources/gui.glade:1040
+msgid "Gate Length"
+msgstr "Longitud de la puerta"
+
+#: microdude/resources/gui.glade:1052
+msgid "Synchronization"
+msgstr "Sincronización"
+
+#: microdude/resources/gui.glade:1145
+msgid "Module Parameters"
+msgstr "Parámetros del módulo"
+
+#: microdude/resources/gui.glade:1195
+msgid "Connect"
+msgstr "Conectar"
+
+#: microdude/resources/gui.glade:1219
+msgid "Upload sequences"
+msgstr "Cargar secuencias"
+
+#: microdude/resources/gui.glade:1232
+msgid "Download sequences"
+msgstr "Descargar secuencias"
+
+#: microdude/resources/gui.glade:1256 microdude/resources/gui.glade:1309
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: microdude/resources/gui.glade:1269
+msgid "Calibrate"
+msgstr "Calibrar"
+
+#: microdude/resources/gui.glade:1293
+msgid "About"
+msgstr "Acerca de"
+
+#: microdude/resources/gui.glade:1382
 msgid "Device"
 msgstr "Dispositivo"
 
-#: microdude/resources/gui.glade:1387
+#: microdude/resources/gui.glade:1413
 msgid "Persistent changes"
 msgstr "Cambios persistentes"
 
