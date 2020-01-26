@@ -116,7 +116,7 @@ msgstr "Conectar"
 
 #: microdude/resources/gui.glade:433 microdude/resources/gui.glade:434
 msgid "Upload sequences"
-msgstr "Subir secuencias"
+msgstr "Cargar secuencias"
 
 #: microdude/resources/gui.glade:447 microdude/resources/gui.glade:448
 msgid "Download sequences"
