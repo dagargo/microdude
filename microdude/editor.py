@@ -32,8 +32,8 @@ import pkg_resources
 import logging
 import gi
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 from gi.repository import GLib
+from gi.repository import Gtk
 
 
 PKG_NAME = 'microdude'
@@ -72,48 +72,6 @@ builder = Gtk.Builder()
 builder.add_from_file(glade_file)
 
 utils.create_config()
-
-
-class SettingsDialog(object):
-
-    def __init__(self, microdude):
-        self.microdude = microdude
-        self.dialog = builder.get_object('settings_dialog')
-        self.accept = builder.get_object('settings_accept_button')
-        self.cancel = builder.get_object('settings_cancel_button')
-        self.devices = builder.get_object('device_combo')
-        self.device_liststore = builder.get_object('device_liststore')
-        self.persistent = builder.get_object('persistent_changes')
-        self.dialog.set_transient_for(microdude.main_window)
-        self.dialog.connect('delete-event', lambda widget,
-                            event: widget.hide() or True)
-        self.cancel.connect('clicked', lambda widget: self.dialog.hide())
-        self.accept.connect('clicked', lambda widget: self.save())
-
-    def show(self):
-        self.device_liststore.clear()
-        i = 0
-        for port in connector.get_ports():
-            logger.debug('Adding port {:s}...'.format(port))
-            self.device_liststore.append([port])
-            if self.microdude.config.get(utils.DEVICE) == port:
-                logger.debug('Port {:s} is active'.format(port))
-                self.devices.set_active(i)
-            i += 1
-        persistent = self.microdude.config.get(utils.PERSISTENT)
-        self.persistent.set_state(persistent)
-        self.persistent.set_active(persistent)
-        self.dialog.run()
-
-    def save(self):
-        active = self.devices.get_active()
-        device = self.device_liststore[active][0]
-        self.microdude.config[utils.DEVICE] = device
-        self.microdude.config[utils.PERSISTENT] = self.persistent.get_active()
-        logger.debug('Configuration: {:s}'.format(str(self.microdude.config)))
-        utils.write_config(self.microdude.config)
-        self.microdude.ui_reconnect()
-        self.dialog.hide()
 
 
 class CalibrationAssistant(object):
@@ -169,21 +127,27 @@ class Editor(object):
         self.about_dialog.set_position(Gtk.WindowPosition.CENTER)
         self.about_dialog.set_transient_for(self.main_window)
         self.about_dialog.set_version(version)
-        self.connect_button = builder.get_object('connect_button')
-        self.connect_button.connect(
-            'clicked', lambda widget: self.ui_reconnect())
+
         self.save_button = builder.get_object('save_button')
         self.save_button.connect('clicked', lambda widget: self.show_save())
         self.open_button = builder.get_object('open_button')
         self.open_button.connect('clicked', lambda widget: self.show_open())
         self.about_button = builder.get_object('about_button')
         self.about_button.connect('clicked', lambda widget: self.show_about())
-        self.preferences_button = builder.get_object('preferences_button')
-        self.preferences_button.connect(
-            'clicked', lambda widget: self.settings_dialog.show())
-        self.calibration_button = builder.get_object('calibration_button')
-        self.calibration_button.connect(
+        self.calibrate_button = builder.get_object('calibrate_button')
+        self.calibrate_button.connect(
             'clicked', lambda widget: self.calibration_assistant.show())
+
+        self.devices = builder.get_object('device_combo')
+        self.devices.connect('changed', lambda widget: self.set_device())
+        self.device_liststore = builder.get_object('device_liststore')
+        self.refresh_button = builder.get_object('refresh_button')
+        self.refresh_button.connect(
+            'clicked', lambda widget: self.load_devices())
+        self.persistent = builder.get_object('persistent_changes')
+        self.persistent.connect(
+            'state-set', lambda widget, state: self.set_persistent())
+
         self.main_container = builder.get_object('main_container')
         self.note_priority = builder.get_object('note_priority')
         self.vel_response = builder.get_object('vel_response')
@@ -229,7 +193,6 @@ class Editor(object):
             connector.SYNC, widget))
         self.statusbar = builder.get_object('statusbar')
         self.context_id = self.statusbar.get_context_id(PKG_NAME)
-        self.settings_dialog = SettingsDialog(self)
         self.calibration_assistant = CalibrationAssistant(self.connector)
 
         self.filter_mbseq = Gtk.FileFilter()
@@ -240,6 +203,7 @@ class Editor(object):
         self.filter_any.set_name(_('Any files'))
         self.filter_any.add_pattern('*')
 
+        self.update_sensitivity()
         self.main_window.present()
 
     def connect(self):
@@ -256,6 +220,34 @@ class Editor(object):
         self.connector.disconnect()
         self.connect()
         self.set_ui()
+
+    def set_ui_config(self):
+        self.load_devices()
+        persistent = self.config.get(utils.PERSISTENT)
+        self.persistent.set_state(persistent)
+        self.persistent.set_active(persistent)
+
+    def load_devices(self):
+        self.device_liststore.clear()
+        i = 0
+        for port in connector.get_ports():
+            logger.debug('Adding port {:s}...'.format(port))
+            self.device_liststore.append([port])
+            if self.config.get(utils.DEVICE) == port:
+                logger.debug('Port {:s} is active'.format(port))
+                self.devices.set_active(i)
+            i += 1
+
+    def set_device(self):
+        active = self.devices.get_active()
+        device = self.device_liststore[active][0]
+        self.config[utils.DEVICE] = device
+        utils.write_config(self.config)
+        self.ui_reconnect()
+
+    def set_persistent(self):
+        self.config[utils.PERSISTENT] = self.persistent.get_active()
+        utils.write_config(self.config)
 
     def set_ui(self):
         """Load the configuration from the MicroBrute and set the values in the interface."""
@@ -299,7 +291,7 @@ class Editor(object):
         self.main_container.set_sensitive(self.connector.connected())
         self.save_button.set_sensitive(self.connector.connected())
         self.open_button.set_sensitive(self.connector.connected())
-        self.calibration_button.set_sensitive(self.connector.connected())
+        self.calibrate_button.set_sensitive(self.connector.connected())
 
     def show_open(self):
         dialog = Gtk.FileChooserDialog('Open', self.main_window,
@@ -424,6 +416,5 @@ class Editor(object):
 
     def main(self):
         self.init_ui()
-        self.connect()
-        self.set_ui()
+        self.set_ui_config()
         Gtk.main()

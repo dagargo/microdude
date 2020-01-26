@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-26 15:12+0100\n"
+"POT-Creation-Date: 2020-01-26 15:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,130 +161,122 @@ msgstr ""
 msgid "End"
 msgstr ""
 
-#: microdude/resources/gui.glade:598
-msgid "Transmit Channel"
-msgstr ""
-
-#: microdude/resources/gui.glade:610
-msgid "Receive Channel"
-msgstr ""
-
-#: microdude/resources/gui.glade:664
-msgid "MIDI"
-msgstr ""
-
-#: microdude/resources/gui.glade:702
-msgid "Note Priority"
-msgstr ""
-
-#: microdude/resources/gui.glade:714
-msgid "Velocity Response"
-msgstr ""
-
-#: microdude/resources/gui.glade:769
-msgid "Keyboard Parameters"
-msgstr ""
-
-#: microdude/resources/gui.glade:808
-msgid "Play"
-msgstr ""
-
-#: microdude/resources/gui.glade:820
-msgid "Sequence Retrigger"
-msgstr ""
-
-#: microdude/resources/gui.glade:832
-msgid "Sequence Change"
-msgstr ""
-
-#: microdude/resources/gui.glade:844
-msgid "Step On"
-msgstr ""
-
-#: microdude/resources/gui.glade:856
-msgid "Step Length"
-msgstr ""
-
-#: microdude/resources/gui.glade:966
-msgid "Sequencer Control"
-msgstr ""
-
-#: microdude/resources/gui.glade:1004
-msgid "LFO Key Retrigger"
-msgstr ""
-
-#: microdude/resources/gui.glade:1016
-msgid "Envelope Legato"
-msgstr ""
-
-#: microdude/resources/gui.glade:1028
-msgid "Bend Range"
-msgstr ""
-
-#: microdude/resources/gui.glade:1040
-msgid "Gate Length"
-msgstr ""
-
-#: microdude/resources/gui.glade:1052
-msgid "Synchronization"
-msgstr ""
-
-#: microdude/resources/gui.glade:1145
-msgid "Module Parameters"
-msgstr ""
-
-#: microdude/resources/gui.glade:1195
-msgid "Connect"
-msgstr ""
-
-#: microdude/resources/gui.glade:1219
-msgid "Upload sequences"
-msgstr ""
-
-#: microdude/resources/gui.glade:1232
-msgid "Download sequences"
-msgstr ""
-
-#: microdude/resources/gui.glade:1256 microdude/resources/gui.glade:1309
-msgid "Preferences"
-msgstr ""
-
-#: microdude/resources/gui.glade:1269
-msgid "Calibrate"
-msgstr ""
-
-#: microdude/resources/gui.glade:1293
-msgid "About"
-msgstr ""
-
-#: microdude/resources/gui.glade:1382
+#: microdude/resources/gui.glade:581
 msgid "Device"
 msgstr ""
 
-#: microdude/resources/gui.glade:1413
+#: microdude/resources/gui.glade:614
+msgid "Refresh devices"
+msgstr ""
+
+#: microdude/resources/gui.glade:646
 msgid "Persistent changes"
+msgstr ""
+
+#: microdude/resources/gui.glade:722
+msgid "Transmit Channel"
+msgstr ""
+
+#: microdude/resources/gui.glade:734
+msgid "Receive Channel"
+msgstr ""
+
+#: microdude/resources/gui.glade:826
+msgid "Note Priority"
+msgstr ""
+
+#: microdude/resources/gui.glade:838
+msgid "Velocity Response"
+msgstr ""
+
+#: microdude/resources/gui.glade:893
+msgid "Keyboard Parameters"
+msgstr ""
+
+#: microdude/resources/gui.glade:932
+msgid "Play"
+msgstr ""
+
+#: microdude/resources/gui.glade:944
+msgid "Sequence Retrigger"
+msgstr ""
+
+#: microdude/resources/gui.glade:956
+msgid "Sequence Change"
+msgstr ""
+
+#: microdude/resources/gui.glade:968
+msgid "Step On"
+msgstr ""
+
+#: microdude/resources/gui.glade:980
+msgid "Step Length"
+msgstr ""
+
+#: microdude/resources/gui.glade:1090
+msgid "Sequencer Control"
+msgstr ""
+
+#: microdude/resources/gui.glade:1128
+msgid "LFO Key Retrigger"
+msgstr ""
+
+#: microdude/resources/gui.glade:1140
+msgid "Envelope Legato"
+msgstr ""
+
+#: microdude/resources/gui.glade:1152
+msgid "Bend Range"
+msgstr ""
+
+#: microdude/resources/gui.glade:1164
+msgid "Gate Length"
+msgstr ""
+
+#: microdude/resources/gui.glade:1176
+msgid "Synchronization"
+msgstr ""
+
+#: microdude/resources/gui.glade:1269
+msgid "Module Parameters"
+msgstr ""
+
+#: microdude/resources/gui.glade:1319
+msgid "Upload sequences"
+msgstr ""
+
+#: microdude/resources/gui.glade:1332
+msgid "Download sequences"
+msgstr ""
+
+#: microdude/resources/gui.glade:1356
+msgid "Calibrate"
+msgstr ""
+
+#: microdude/resources/gui.glade:1380
+msgid "About"
 msgstr ""
 
 #: microdude/editor.py:47
 msgid "sequences"
 msgstr ""
 
-#: microdude/editor.py:236
+#: microdude/editor.py:199
 msgid "MicroBrute sequence files"
 msgstr ""
 
-#: microdude/editor.py:240
+#: microdude/editor.py:203
 msgid "Any files"
 msgstr ""
 
-#: microdude/editor.py:249
+#: microdude/editor.py:212
 msgid "Connected (firmware version {:s})"
 msgstr ""
 
-#: microdude/editor.py:253
+#: microdude/editor.py:216
 msgid "Not connected"
 msgstr ""
 
-#: microdude/editor.py:328
+#: microdude/editor.py:319
 msgid "Error in sequence \"{:s}\""
 msgstr ""

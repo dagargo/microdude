@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: MicroDude 1.3.2\n"
+"Project-Id-Version: MicroDude 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-26 15:09+0100\n"
-"PO-Revision-Date: 2020-01-26 15:11+0100\n"
+"POT-Creation-Date: 2020-01-26 15:42+0100\n"
+"PO-Revision-Date: 2020-01-26 15:42+0100\n"
 "Last-Translator: David García Goñi <dagargo@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -116,7 +116,7 @@ msgstr "MicroDude es un editor para el Microbrute de Arturia"
 
 #: microdude/resources/gui.glade:425
 msgid "Calibration assistant"
-msgstr "Calibración"
+msgstr "Asistente de calibración"
 
 #: microdude/resources/gui.glade:439
 msgid ""
@@ -168,130 +168,122 @@ msgstr "Calibración completada"
 msgid "End"
 msgstr "Al fin"
 
-#: microdude/resources/gui.glade:598
-msgid "Transmit Channel"
-msgstr "Canal de transmisión"
-
-#: microdude/resources/gui.glade:610
-msgid "Receive Channel"
-msgstr "Canal de recepción"
-
-#: microdude/resources/gui.glade:664
-msgid "MIDI"
-msgstr ""
-
-#: microdude/resources/gui.glade:702
-msgid "Note Priority"
-msgstr "Prioridad de nota"
-
-#: microdude/resources/gui.glade:714
-msgid "Velocity Response"
-msgstr "Respuesta de velocidad"
-
-#: microdude/resources/gui.glade:769
-msgid "Keyboard Parameters"
-msgstr "Parámetros del teclado"
-
-#: microdude/resources/gui.glade:808
-msgid "Play"
-msgstr "Reproducción"
-
-#: microdude/resources/gui.glade:820
-msgid "Sequence Retrigger"
-msgstr "Redisparo de secuencia"
-
-#: microdude/resources/gui.glade:832
-msgid "Sequence Change"
-msgstr "Cambio de secuencia"
-
-#: microdude/resources/gui.glade:844
-msgid "Step On"
-msgstr "Siguiente paso"
-
-#: microdude/resources/gui.glade:856
-msgid "Step Length"
-msgstr "Duración del paso"
-
-#: microdude/resources/gui.glade:966
-msgid "Sequencer Control"
-msgstr "Control del secuenciador"
-
-#: microdude/resources/gui.glade:1004
-msgid "LFO Key Retrigger"
-msgstr "Redisparo del LFO"
-
-#: microdude/resources/gui.glade:1016
-msgid "Envelope Legato"
-msgstr "Envolvente ligada"
-
-#: microdude/resources/gui.glade:1028
-msgid "Bend Range"
-msgstr "Inflexión de tono"
-
-#: microdude/resources/gui.glade:1040
-msgid "Gate Length"
-msgstr "Longitud de la puerta"
-
-#: microdude/resources/gui.glade:1052
-msgid "Synchronization"
-msgstr "Sincronización"
-
-#: microdude/resources/gui.glade:1145
-msgid "Module Parameters"
-msgstr "Parámetros del módulo"
-
-#: microdude/resources/gui.glade:1195
-msgid "Connect"
-msgstr "Conectar"
-
-#: microdude/resources/gui.glade:1219
-msgid "Upload sequences"
-msgstr "Cargar secuencias"
-
-#: microdude/resources/gui.glade:1232
-msgid "Download sequences"
-msgstr "Descargar secuencias"
-
-#: microdude/resources/gui.glade:1256 microdude/resources/gui.glade:1309
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: microdude/resources/gui.glade:1269
-msgid "Calibrate"
-msgstr "Calibrar"
-
-#: microdude/resources/gui.glade:1293
-msgid "About"
-msgstr "Acerca de"
-
-#: microdude/resources/gui.glade:1382
+#: microdude/resources/gui.glade:581
 msgid "Device"
 msgstr "Dispositivo"
 
-#: microdude/resources/gui.glade:1413
+#: microdude/resources/gui.glade:614
+msgid "Refresh devices"
+msgstr ""
+
+#: microdude/resources/gui.glade:646
 msgid "Persistent changes"
 msgstr "Cambios persistentes"
+
+#: microdude/resources/gui.glade:722
+msgid "Transmit Channel"
+msgstr "Canal de transmisión"
+
+#: microdude/resources/gui.glade:734
+msgid "Receive Channel"
+msgstr "Canal de recepción"
+
+#: microdude/resources/gui.glade:826
+msgid "Note Priority"
+msgstr "Prioridad de nota"
+
+#: microdude/resources/gui.glade:838
+msgid "Velocity Response"
+msgstr "Respuesta de velocidad"
+
+#: microdude/resources/gui.glade:893
+msgid "Keyboard Parameters"
+msgstr "Parámetros del teclado"
+
+#: microdude/resources/gui.glade:932
+msgid "Play"
+msgstr "Reproducción"
+
+#: microdude/resources/gui.glade:944
+msgid "Sequence Retrigger"
+msgstr "Redisparo de secuencia"
+
+#: microdude/resources/gui.glade:956
+msgid "Sequence Change"
+msgstr "Cambio de secuencia"
+
+#: microdude/resources/gui.glade:968
+msgid "Step On"
+msgstr "Siguiente paso"
+
+#: microdude/resources/gui.glade:980
+msgid "Step Length"
+msgstr "Duración del paso"
+
+#: microdude/resources/gui.glade:1090
+msgid "Sequencer Control"
+msgstr "Control del secuenciador"
+
+#: microdude/resources/gui.glade:1128
+msgid "LFO Key Retrigger"
+msgstr "Redisparo del LFO"
+
+#: microdude/resources/gui.glade:1140
+msgid "Envelope Legato"
+msgstr "Envolvente ligada"
+
+#: microdude/resources/gui.glade:1152
+msgid "Bend Range"
+msgstr "Inflexión de tono"
+
+#: microdude/resources/gui.glade:1164
+msgid "Gate Length"
+msgstr "Longitud de la puerta"
+
+#: microdude/resources/gui.glade:1176
+msgid "Synchronization"
+msgstr "Sincronización"
+
+#: microdude/resources/gui.glade:1269
+msgid "Module Parameters"
+msgstr "Parámetros del módulo"
+
+#: microdude/resources/gui.glade:1319
+msgid "Upload sequences"
+msgstr "Cargar secuencias"
+
+#: microdude/resources/gui.glade:1332
+msgid "Download sequences"
+msgstr "Descargar secuencias"
+
+#: microdude/resources/gui.glade:1356
+msgid "Calibrate"
+msgstr "Calibrar"
+
+#: microdude/resources/gui.glade:1380
+msgid "About"
+msgstr "Acerca de"
 
 #: microdude/editor.py:47
 msgid "sequences"
 msgstr "secuencias"
 
-#: microdude/editor.py:236
+#: microdude/editor.py:199
 msgid "MicroBrute sequence files"
 msgstr "Archivos de secuencia de MicroBrute"
 
-#: microdude/editor.py:240
+#: microdude/editor.py:203
 msgid "Any files"
 msgstr "Todos los archivos"
 
-#: microdude/editor.py:249
+#: microdude/editor.py:212
 msgid "Connected (firmware version {:s})"
 msgstr "Conectado (versión de firmware {:s})"
 
-#: microdude/editor.py:253
+#: microdude/editor.py:216
 msgid "Not connected"
 msgstr "No conectado"
 
-#: microdude/editor.py:328
+#: microdude/editor.py:319
 msgid "Error in sequence \"{:s}\""
 msgstr "Error en la secuencia \"{:s}\""

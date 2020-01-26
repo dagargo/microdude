@@ -79,6 +79,7 @@ def read_config():
 
 def write_config(config):
     logger.debug('Writing config file...')
+    logger.debug('Configuration: {:s}'.format(str(config)))
     with open(CONFIG_FILE, 'w') as file:
         try:
             file.write(json.dumps(config))
