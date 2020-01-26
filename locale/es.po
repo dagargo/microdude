@@ -112,7 +112,7 @@ msgstr "Exponencial"
 
 #: microdude/resources/gui.glade:394
 msgid "MicroDude is an editor for Arturia MicroBrute"
-msgstr "MicroDude es un editor para el Microbrute de Arturia"
+msgstr "MicroDude es un editor para el Arturia MicroBrute"
 
 #: microdude/resources/gui.glade:425
 msgid "Calibration assistant"
@@ -166,7 +166,7 @@ msgstr "Calibración completada"
 
 #: microdude/resources/gui.glade:517
 msgid "End"
-msgstr "Al fin"
+msgstr "Fin"
 
 #: microdude/resources/gui.glade:581
 msgid "Device"

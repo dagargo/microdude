@@ -112,7 +112,7 @@ msgstr "Exponentiel"
 
 #: microdude/resources/gui.glade:394
 msgid "MicroDude is an editor for Arturia MicroBrute"
-msgstr "MicroDude est un éditeur pour le Microbrute d'Arturia"
+msgstr "MicroDude est un éditeur pour le MicroBrute d'Arturia"
 
 #: microdude/resources/gui.glade:425
 msgid "Calibration assistant"
