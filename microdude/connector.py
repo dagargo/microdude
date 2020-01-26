@@ -165,7 +165,11 @@ SEQ_FILE_ERROR = 'Error in sequences file'
 
 
 def get_ports():
-    return mido.get_ioport_names()
+    filtered = []
+    for p in mido.get_ioport_names():
+        if 'MicroBrute' in p:
+            filtered.append(p)
+    return filtered
 
 class Connector(object):
     """MicroDude connector"""
