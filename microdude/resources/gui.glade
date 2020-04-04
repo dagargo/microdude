@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.22.1
+<!-- Generated with glade 3.22.1 
 
 Copyright (C) David García Goñi
 
@@ -438,7 +438,6 @@ along with MicroDude.  If not, see <http://www.gnu.org/licenses/>.
         <property name="margin_bottom">6</property>
         <property name="label" translatable="yes">This procedure calibrates the pitch bend an modulation wheels.
 This is very experimental, so do it under your own risk.
-Once started, it can not be stopped.
 </property>
         <property name="wrap">True</property>
       </object>

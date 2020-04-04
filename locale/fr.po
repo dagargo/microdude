@@ -127,7 +127,6 @@ msgstr ""
 "Cette procédure permet de calibrer les roues de pitch bend et de "
 "modulation.\n"
 "C'est très expérimental, alors faites-le à vos risques et périls.\n"
-"Une fois démarré, il ne peut pas être arrêté.\n"
 
 #: microdude/resources/gui.glade:446
 msgid "Start"

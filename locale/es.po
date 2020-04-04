@@ -127,7 +127,6 @@ msgstr ""
 "Este procedimiento calibra la rueda de inflexión de tono y la rueda de "
 "modulación.\n"
 "Esto es muy experimental, así que hazlo bajo tu propio riesgo.\n"
-"Una vez que comience no se puede detener.\n"
 
 #: microdude/resources/gui.glade:446
 msgid "Start"

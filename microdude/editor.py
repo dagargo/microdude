@@ -107,8 +107,7 @@ class CalibrationAssistant(object):
             self.connector.set_parameter(connector.CALIB_END, 0)
 
     def cancel(self):
-        if self.calibration_assistant.get_current_page() == 0:
-            self.calibration_assistant.hide()
+        self.calibration_assistant.hide()
 
 
 class Editor(object):
