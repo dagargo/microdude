@@ -239,9 +239,10 @@ class Editor(object):
 
     def set_device(self):
         active = self.devices.get_active()
-        device = self.device_liststore[active][0]
-        self.config[utils.DEVICE] = device
-        utils.write_config(self.config)
+        if active > -1:
+            device = self.device_liststore[active][0]
+            self.config[utils.DEVICE] = device
+            utils.write_config(self.config)
         self.ui_reconnect()
 
     def set_persistent(self):
