@@ -145,7 +145,7 @@ msgstr "Paso 1"
 
 #: microdude/resources/gui.glade:477
 msgid "While setting both wheels at the bottom click on the next button"
-msgstr "Situa ambas ruedas abajo y haz clic en el botón de siguiente"
+msgstr "Sitúa ambas ruedas abajo y haz clic en el botón de siguiente"
 
 #: microdude/resources/gui.glade:482
 msgid "Step 2"
@@ -153,7 +153,7 @@ msgstr "Paso 2"
 
 #: microdude/resources/gui.glade:495
 msgid "While setting both wheels at the top click on the next button"
-msgstr "Situa ambas ruedas arriba y haz clic en el botón de siguiente"
+msgstr "Sitúa ambas ruedas arriba y haz clic en el botón de siguiente"
 
 #: microdude/resources/gui.glade:500
 msgid "Step 3"
@@ -173,7 +173,7 @@ msgstr "Dispositivo"
 
 #: microdude/resources/gui.glade:614
 msgid "Refresh devices"
-msgstr ""
+msgstr "Actualizar dispositivos"
 
 #: microdude/resources/gui.glade:646
 msgid "Persistent changes"
