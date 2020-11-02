@@ -208,34 +208,35 @@ class Editor(object):
     def connect(self):
         device = self.config[utils.DEVICE]
         self.connector.connect(device)
-        if self.connector.connected():
-            conn_msg = _('Connected (firmware version {:s})').format(
-                self.connector.sw_version)
-            self.set_status_msg(conn_msg)
-        else:
-            self.set_status_msg(_('Not connected'))
 
     def ui_reconnect(self):
         self.connector.disconnect()
-        self.connect()
+        active = self.devices.get_active()
+        if active > -1:
+            self.connect()
         self.set_ui()
 
     def set_ui_config(self):
-        self.load_devices()
+        self.load_devices_and_set_active(True)
         persistent = self.config.get(utils.PERSISTENT)
         self.persistent.set_state(persistent)
         self.persistent.set_active(persistent)
 
     def load_devices(self):
+        self.load_devices_and_set_active(False)
+
+    def load_devices_and_set_active(self, set_active):
         self.device_liststore.clear()
         i = 0
         for port in connector.get_ports():
             logger.debug('Adding port {:s}...'.format(port))
             self.device_liststore.append([port])
-            if self.config.get(utils.DEVICE) == port:
+            if set_active and self.config.get(utils.DEVICE) == port:
                 logger.debug('Port {:s} is active'.format(port))
                 self.devices.set_active(i)
             i += 1
+        if set_active and self.devices.get_active() == -1:
+            self.set_ui()
 
     def set_device(self):
         active = self.devices.get_active()
@@ -285,6 +286,11 @@ class Editor(object):
             value = self.connector.get_parameter(connector.SYNC)
             self.set_combo_value(self.sync, value)
             self.configuring = False
+            conn_msg = _('Connected (firmware version {:s})').format(
+                self.connector.sw_version)
+        else:
+            conn_msg = _('Not connected')
+        self.set_status_msg(conn_msg)
         self.update_sensitivity()
 
     def update_sensitivity(self):
