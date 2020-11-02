@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: MicroDude 2.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-26 15:42+0100\n"
-"PO-Revision-Date: 2020-01-26 15:42+0100\n"
+"PO-Revision-Date: 2020-11-02 04:15+0100\n"
 "Last-Translator: David García Goñi <dagargo@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -173,7 +173,7 @@ msgstr "Périphérique"
 
 #: microdude/resources/gui.glade:614
 msgid "Refresh devices"
-msgstr ""
+msgstr "Rafraichir les périphériques"
 
 #: microdude/resources/gui.glade:646
 msgid "Persistent changes"
