@@ -242,13 +242,17 @@ class Editor(object):
         active = self.devices.get_active()
         if active > -1:
             device = self.device_liststore[active][0]
+            changed = self.config[utils.DEVICE] != device
             self.config[utils.DEVICE] = device
-            utils.write_config(self.config)
+            if changed:
+                utils.write_config(self.config)
         self.ui_reconnect()
 
     def set_persistent(self):
+        changed = self.config[utils.PERSISTENT] != self.persistent.get_active()
         self.config[utils.PERSISTENT] = self.persistent.get_active()
-        utils.write_config(self.config)
+        if changed:
+            utils.write_config(self.config)
 
     def set_ui(self):
         """Load the configuration from the MicroBrute and set the values in the interface."""
