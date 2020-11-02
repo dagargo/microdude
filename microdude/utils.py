@@ -49,7 +49,7 @@ def create_config():
             logger.error(CREATE_ERROR_MSG.format(e))
 
     if not exists(CONFIG_FILE):
-        logger.debug('Writing config file...')
+        logger.debug('Creating config file...')
         with open(CONFIG_FILE, 'w') as file:
             try:
                 file.write(json.dumps(DEFAULT_CONFIG))
