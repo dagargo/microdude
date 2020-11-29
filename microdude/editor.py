@@ -36,12 +36,11 @@ from gi.repository import GLib
 from gi.repository import Gtk
 
 
-PKG_NAME = 'microdude'
-locale.textdomain(PKG_NAME)
-gettext.textdomain(PKG_NAME)
+locale.textdomain(utils.APP_NAME)
+gettext.textdomain(utils.APP_NAME)
 
 glade_file = pkg_resources.resource_filename(__name__, 'resources/gui.glade')
-version = pkg_resources.get_distribution(PKG_NAME).version
+version = pkg_resources.get_distribution(utils.APP_NAME).version
 
 EXTENSION = '.mbseq'
 DEF_FILENAME = _('sequences') + EXTENSION
@@ -50,7 +49,7 @@ log_level = logging.ERROR
 
 
 def print_help():
-    print('Usage: {:s} [-v]'.format(PKG_NAME))
+    print('Usage: {:s} [-v]'.format(utils.APP_NAME))
 
 
 try:
@@ -191,7 +190,7 @@ class Editor(object):
         self.sync.connect('changed', lambda widget: self.set_parameter_from_combo(
             connector.SYNC, widget))
         self.statusbar = builder.get_object('statusbar')
-        self.context_id = self.statusbar.get_context_id(PKG_NAME)
+        self.context_id = self.statusbar.get_context_id(utils.APP_NAME)
         self.calibration_assistant = CalibrationAssistant(self.connector)
 
         self.filter_mbseq = Gtk.FileFilter()

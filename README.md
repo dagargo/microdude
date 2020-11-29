@@ -21,9 +21,10 @@ The package dependencies for Debian based distributions are:
 - python3-setuptools
 - python3-mido
 - python3-rtmidi
+- python3-setproctitle
 - gettext
 
-You can easily install them by running `sudo apt-get install make python3 python3-setuptools python3-mido python3-rtmidi gettext`.
+You can easily install them by running `sudo apt-get install make python3 python3-setuptools python3-mido python3-rtmidi python3-setproctitle gettext`.
 In case `python-rtmidi` is not available, `PortMidi` will be used as the backend. You can install it with `sudo apt-get install libportmidi-dev`.
 
 To install MicroDude simply run `make && sudo make install`.
