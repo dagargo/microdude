@@ -122,8 +122,6 @@ class Editor(object):
             'delete-event', lambda widget, event: self.quit())
         self.main_window.set_position(Gtk.WindowPosition.CENTER)
         self.about_dialog = builder.get_object('about_dialog')
-        self.about_dialog.set_position(Gtk.WindowPosition.CENTER)
-        self.about_dialog.set_transient_for(self.main_window)
         self.about_dialog.set_version(version)
 
         self.save_button = builder.get_object('save_button')
@@ -136,12 +134,12 @@ class Editor(object):
         self.calibrate_button.connect(
             'clicked', lambda widget: self.calibration_assistant.show())
 
-        self.devices = builder.get_object('device_combo')
-        self.devices.connect('changed', lambda widget: self.set_device())
+        self.device_combo = builder.get_object('device_combo')
+        self.device_combo.connect('changed', lambda widget: self.set_device())
         self.device_liststore = builder.get_object('device_liststore')
         self.refresh_button = builder.get_object('refresh_button')
         self.refresh_button.connect(
-            'clicked', lambda widget: self.load_devices())
+            'clicked', lambda widget: self.load_devices(False))
         self.persistent = builder.get_object('persistent_changes')
         self.persistent.connect(
             'state-set', lambda widget, state: self.set_persistent())
@@ -210,38 +208,42 @@ class Editor(object):
 
     def ui_reconnect(self):
         self.connector.disconnect()
-        active = self.devices.get_active()
+        active = self.device_combo.get_active()
         if active > -1:
             self.connect()
         self.set_ui()
 
     def set_ui_config(self):
-        self.load_devices_and_set_active(True)
+        self.load_devices(True)
         persistent = self.config.get(utils.PERSISTENT)
         self.persistent.set_state(persistent)
         self.persistent.set_active(persistent)
 
     def load_devices(self):
-        self.load_devices_and_set_active(False)
+        self.load_devices(False)
 
-    def load_devices_and_set_active(self, set_active):
+    def load_devices(self, select):
         self.device_liststore.clear()
         i = 0
+        found = -1
         for port in connector.get_ports():
             logger.debug('Adding port {:s}...'.format(port))
             self.device_liststore.append([port])
-            if set_active and self.config.get(utils.DEVICE) == port:
+            if self.config.get(utils.DEVICE) == port and select:
                 logger.debug('Port {:s} is active'.format(port))
-                self.devices.set_active(i)
+                found = i
             i += 1
-        if set_active and self.devices.get_active() == -1:
+        self.device_combo.set_active(found)
+        if select and self.device_combo.get_active() == -1:
             self.set_ui()
 
     def set_device(self):
-        active = self.devices.get_active()
+        active = self.device_combo.get_active()
         if active > -1:
             device = self.device_liststore[active][0]
-            self.config[utils.DEVICE] = device
+        else:
+            device = ''
+        self.config[utils.DEVICE] = device
         self.ui_reconnect()
 
     def set_persistent(self):
