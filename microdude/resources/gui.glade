@@ -440,7 +440,6 @@ This is very experimental, so do it under your own risk.
       <packing>
         <property name="title" translatable="yes">Start</property>
         <property name="complete">True</property>
-        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
@@ -458,7 +457,6 @@ This is very experimental, so do it under your own risk.
         <property name="page-type">intro</property>
         <property name="title" translatable="yes">Step 1</property>
         <property name="complete">True</property>
-        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
@@ -476,7 +474,6 @@ This is very experimental, so do it under your own risk.
         <property name="page-type">intro</property>
         <property name="title" translatable="yes">Step 2</property>
         <property name="complete">True</property>
-        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
@@ -494,7 +491,6 @@ This is very experimental, so do it under your own risk.
         <property name="page-type">intro</property>
         <property name="title" translatable="yes">Step 3</property>
         <property name="complete">True</property>
-        <property name="has-padding">False</property>
       </packing>
     </child>
     <child>
@@ -511,16 +507,12 @@ This is very experimental, so do it under your own risk.
         <property name="page-type">summary</property>
         <property name="title" translatable="yes">End</property>
         <property name="complete">True</property>
-        <property name="has-padding">False</property>
       </packing>
     </child>
     <child internal-child="action_area">
       <object class="GtkBox">
         <property name="can-focus">False</property>
       </object>
-      <packing>
-        <property name="has-padding">False</property>
-      </packing>
     </child>
   </object>
   <object class="GtkWindow" id="main_window">
