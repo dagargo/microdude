@@ -345,7 +345,7 @@ class Connector(object):
         raise ConnectorError()
 
     def get_hex_data(self, data):
-        return ', '.join([hex(i) for i in data])
+        return ' '.join([f'{i:02x}' for i in data])
 
     def create_set_sequence_messages(self, sequence):
         """Return an array representing the sysex messages for the given sequence in Arturia's format."""
