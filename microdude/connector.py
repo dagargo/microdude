@@ -82,9 +82,6 @@ def map_proportional_3(value):
 def map_proportional_2(value):
     return value * 64
 
-def map_plus_1_proportional_4(value):
-    return (value - 1) * 30
-
 def map_step_length(value):
     if value == 4:
         return 0
