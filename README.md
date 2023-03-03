@@ -1,6 +1,10 @@
 # MicroDude
 
+**As of 2023, this project is no longer supported and, although it is complete, its use is discouraged. [Elektroid](https://github.com/dagargo/elektroid) is the recommended alternative.**
+
 MicroDude is an editor for Arturia MicroBrute. It offers all the functionality of Arturia MicroBrute Connection but the firmware upload and the factory patterns reset.
+
+## Important notice
 
 ![Screenshot](doc/screenshot.png)
 
