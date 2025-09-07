@@ -11,7 +11,5 @@ setup(name='MicroDude',
     url='https://github.com/dagargo/microdude',
     packages=find_packages(exclude=['doc', 'tests']),
     package_data={'microdude': ['resources/*']},
-    license='GNU General Public License v3 (GPLv3)',
-    test_suite='tests',
-    tests_require=[]
+    license='GNU General Public License v3 (GPLv3)'
 )
